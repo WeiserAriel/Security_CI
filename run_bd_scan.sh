@@ -88,7 +88,7 @@ export DETECT_SCAN_FLAGS="--detect.blackduck.signature.scanner.snippet.mode=true
 export LOG_FILE=${WORK_DIR}/log/${PROJECT_NAME}_${PROJECT_VERSION}_$(date '+%Y-%m-%d-%H%M%S').log
 
 info "Running BlackDuck scan in: ${WORK_DIR}"
-info "Execution log file: 
+info "Execution log file: ${LOG_FILE}"
 ${DETECT_SCRIPT} ${DETECT_GENERAL_FLAGS} ${DETECT_PROJECT_FLAGS} ${DETECT_REPORT_FLAGS} ${DETECT_SCAN_FLAGS} > ${LOG_FILE}
 
 
