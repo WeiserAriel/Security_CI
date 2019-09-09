@@ -1,0 +1,4 @@
+export SPRING_APPLICATION_JSON='{"blackduck.url":"https://blackduck.mellanox.com/","blackduck.api.token":"<PLACE YOUR TOKEN VALUE HERE>"}'
+export PROJECT_NAME="<PLACE PROJECT NAME HERE>"
+export PROJECT_VERSION="<PLACE PROJECT VERSION HERE>"
+export PROJECT_SRC_PATH="<PLACE PROJECT SOURCE PATH HERE>"
