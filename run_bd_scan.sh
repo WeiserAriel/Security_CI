@@ -90,8 +90,4 @@ export LOG_FILE=${WORK_DIR}/log/${PROJECT_NAME}_${PROJECT_VERSION}_$(date '+%Y-%
 info "Running BlackDuck scan in: ${WORK_DIR}"
 info "Execution log file: ${LOG_FILE}"
 ${DETECT_SCRIPT} ${DETECT_GENERAL_FLAGS} ${DETECT_PROJECT_FLAGS} ${DETECT_REPORT_FLAGS} ${DETECT_SCAN_FLAGS} > ${LOG_FILE}
-
-
-
-
-
+info "The BlackDuck Scan completed. Exit code: $?"
