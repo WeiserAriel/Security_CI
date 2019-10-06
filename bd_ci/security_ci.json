@@ -1,0 +1,125 @@
+{
+  "author": "arielwe@mellanox.com",
+  "notify": "arielwe@mellanox.com",
+  "ci_version": "2.1",
+  "parameters": {},
+  "phases": [
+    {
+      "phase_1": [
+        {
+          "name": "Clone",
+          "module": "com.mellanox.jenkins.generic_modules.Checkout",
+          "category": "Clone",
+          "parameters": {
+            "BRANCH_NAME": "master",
+            "GIT_REPOSITORY": "https://github.com/WeiserAriel/Security_CI.git",
+            "CLONE_PATH": "<FOLDER_NAME>",
+            "SUBMODULES": "true",
+            "CREDENTIALSID": "arielwe:arielwe"
+          },
+          "skip": false,
+          "ignore_failure": false
+        },
+        {
+          "name": "Spell Check",
+          "module": "com.mellanox.jenkins.generic_modules.SpellCheck",
+          "category": "Pre Build",
+          "parameters": {
+            "spell_check_params": "--check-new"
+          },
+          "skip": true,
+          "ignore_failure": true
+        },
+        {
+          "name": "Beautify",
+          "module": "com.mellanox.jenkins.generic_modules.Beautify",
+          "category": "Pre Build",
+          "parameters": {},
+          "skip": true,
+          "ignore_failure": false
+        },
+        {
+          "name": "Build",
+          "module": "build/ci_modules/compile.groovy",
+          "category": "Build",
+          "parameters": {},
+          "skip": false,
+          "ignore_failure": false
+        },
+        {
+          "name": "BAT",
+          "module": "build/ci/push_gate.groovy",
+          "category": "BAT",
+          "parameters": {},
+          "skip": true,
+          "ignore_failure": false
+        },
+        {
+          "name": "Clean",
+          "module": "build/ci/uninstall.groovy",
+          "category": "Clean",
+          "parameters": {},
+          "skip": true,
+          "ignore_failure": false
+        },
+        {
+          "name": "Coverity",
+          "module": "com.mellanox.jenkins.generic_modules.Coverity",
+          "category": "Post Build",
+          "parameters": {},
+          "skip": true,
+          "ignore_failure": false
+        },
+        {
+          "parallel_1": [
+            {
+              "name": "test2",
+              "module": "/auto/swgwork/orlib/test2.groovy",
+              "category": "test2",
+              "node": "fit69",
+              "parameters": {},
+              "skip": false,
+              "ignore_failure": false
+            },
+            {
+              "name": "test3",
+              "module": "/auto/swgwork/orlib/test2.groovy",
+              "category": "test3",
+              "node": "fit69",
+              "parameters": {},
+              "skip": false,
+              "ignore_failure": false,
+              "finally": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "phase_2": [
+        {
+          "name": "Gerrit Update",
+          "module": "com.mellanox.jenkins.generic_modules.GerritVerification",
+          "category": "Gerrit Update",
+          "parameters": {
+            "gerrit_verification_type": "Verify"
+          },
+          "node": "fit69",
+          "skip": false,
+          "ignore_failure": false,
+          "finally": true
+        },
+        {
+          "name": "Merge",
+          "module": "com.mellanox.jenkins.generic_modules.Merge",
+          "category": "Merge",
+          "parameters": {},
+          "node": "fit69",
+          "skip": false,
+          "ignore_failure": false
+        }
+      ]
+    }
+  ]
+}
+

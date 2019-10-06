@@ -1,0 +1,5 @@
+export SPRING_APPLICATION_JSON='{"blackduck.url":"https://blackduck.mellanox.com/","blackduck.api.token":"NjYyNTZjOTAtMGE4Ni00ZTcwLWE4MWMtNDkwYTEwMmZmNDViOmJkNTQ1ZDRjLTExYzAtNGI2Yy05Y2FiLTA0ZDNiZjdlNDMwYg=="}'
+
+export PROJECT_NAME="IBUTILS2_AUTOMATION"
+export PROJECT_VERSION="ibutils2-2.1.1-0.111.MLNX20191003.gd4efc49"
+export PROJECT_SRC_PATH="/qa/qa/arielwe/bd_vladi/blackduck/ibutils2/"

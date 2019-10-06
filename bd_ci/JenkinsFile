@@ -1,0 +1,26 @@
+pipeline {
+    agent none
+    options {
+        timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+    }
+    environment {
+        GENERIC_CI_GIT_BRANCH = 'ci_version-2.1'
+        MAIN_NODE = 'l-linkx-01'
+    }
+    parameters {
+        string(name: 'JSON_FILE', description: 'path of json file', defaultValue: 'build/ci_build_configuration.json')
+    }
+    stages {
+        stage("Init Flow") {
+            agent { label "${MAIN_NODE}" }
+            steps {
+                script {
+                    library changelog: false, identifier: "ci_framework@$GENERIC_CI_GIT_BRANCH"
+                    LoadNGCI()
+                }
+            }
+        }
+
+    }
+}
