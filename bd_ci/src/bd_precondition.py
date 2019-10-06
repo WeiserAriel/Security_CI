@@ -14,8 +14,8 @@ PROJECT_SRC_PATH = "export PROJECT_SRC_PATH=\"" + BASE_DIRECTORY + "folder_tmp\"
 def main():
 
     #TODO ArgPasre
-    parser = argparse.ArgumentParser(description='simple usage: --project NEO --username Arielwe \
-    --password 12345678 --file /qa/qa/security/neo/neo-2.3.0-91.el7.tar.gz --debug yes')
+    parser = argparse.ArgumentParser(description='simple usage: --project NEO \
+     --file /qa/qa/security/neo/neo-2.3.0-91.el7.tar.gz')
     #TODO - change all choices
     parser.add_argument('--project',choices=['UFM','UFMAPL','NEO','MFT','HPCX'] , dest='project', help='select a project from list')
     parser.add_argument('--file', help='file to scan',dest='file', required=True)
