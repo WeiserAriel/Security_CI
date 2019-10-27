@@ -53,7 +53,7 @@ def main():
                         filemode='a')
 
 
-    logging.info("Start Script...")
+    print("Start Script from bd_manager.py")
     edit_source_file(args.project, args.version, args.file)
     #if it's MOFED i need to take sources and untar them for arg.file.
     directory_path = copy_file_to_tmp(args.project, args.file)
@@ -63,9 +63,9 @@ def main():
 
 def copy_file_to_tmp(project_name,file_path ):
 
-    logging.info("start copy project file to tmp directory")
+    print("start copy project file to tmp directory")
     dst_directory_path = BASE_DIRECTORY + project_name +'_automation/'
-    logging.info("Add write/Read permission for directory")
+    print("Add write/Read permission for directory")
     try:
         mode = 777
         if not os.path.isdir(dst_directory_path):
@@ -73,28 +73,28 @@ def copy_file_to_tmp(project_name,file_path ):
         os.chmod(dst_directory_path, mode)
         #os.chmod(file_path,mode)
     except Exception as e:
-        logging.error("ERROR: Can't change permission for directory" + str(e))
+        print("ERROR: Can't change permission for directory" + str(e))
         sys.exit(1)
 
-    logging.info("Copy file ")
+    print("Copy file ")
     try:
         #for MOFED project we need to copy a directory and not a file:
         #example : file path = /mswg/release/ofed/OFED-internal-4.6-3.7.7.2/SRPMS/
         if project_name == 'MOFED':
-            logging.info("Copy source files to :" + str(dst_directory_path))
+            print("Copy source files to :" + str(dst_directory_path))
             copytree_helper(file_path, dst_directory_path)
         else:
             # adding the name of the file to the directory path
             file_name = str(file_path).split('/').pop()
             dst_full_directory_path = dst_directory_path + file_name
             shutil.copyfile(file_path, dst_full_directory_path)
-        logging.info("Copy file succeeded")
+        print("Copy file succeeded")
     except Exception as e:
 
-        logging.error("ERROR : copy file failed" + str(e))
+        print("ERROR : copy file failed" + str(e))
         print (str(e))
         sys.exit(1)
-    logging.info("Copy file is done")
+    print("Copy file is done")
     return dst_directory_path
 
 def copytree_helper(src, dst, symlinks=False, ignore=None):
@@ -112,20 +112,20 @@ def load_source_file():
     try:
         subprocess.call(cmd, shell=True)
     except Exception as e:
-        logging.error("ERROR while running loading source file with subprocess" + str(e))
+        print("ERROR while running loading source file with subprocess" + str(e))
         sys.exit(1)
 
     print ("loading source file is ended successfully")
 
 def clear_all_repository():
     directory_path = BASE_DIRECTORY
-    logging.info("Removing entire repository repository from ")
+    print("Removing entire repository repository from ")
     try:
         shutil.rmtree(directory_path)
     except Exception as e:
-        logging.error("ERROR Couldn't remove repository")
+        print("ERROR Couldn't remove repository")
         sys.exit(1)
-    logging.info("Repository was removed")
+    print("Repository was removed")
 
 def edit_source_file(name, version, src_path):
     logging.info("start editing source file")
@@ -135,46 +135,46 @@ def edit_source_file(name, version, src_path):
     project_src_path_arr = str(PROJECT_SRC_PATH.replace("folder_tmp",  name) + '\"').split('=')
     project_src_path = project_src_path_arr[0] + '=\"' + project_src_path_arr[1] +'_automation'
 
-    logging.info("Project name is:" + project_name)
-    logging.info("Project version is: "+ project_version)
-    logging.info("Project src path is: " + project_src_path)
+    print("Project name is:" + project_name)
+    print("Project version is: "+ project_version)
+    print("Project src path is: " + project_src_path)
 
-    logging.info("Writing information into file:")
+    print("Writing information into file:")
     try:
         with open(SOURCE_FILE_PATH, 'a') as file1:
             file1.write(project_name+'\n')
             file1.write((project_version + '\n'))
             file1.write(project_src_path + '\n')
     except Exception as e:
-        logging.error("ERROR while editing source file")
+        print("ERROR while editing source file")
         sys.exit(1)
 
-    logging.info("source file was written successfully")
+    print("source file was written successfully")
 
 
 def run_blackduck_scan():
-    logging.info ("start running blackduck scan")
+    print("start running blackduck scan")
     try:
         cmd = SCRIPT_PATH
         # subprocess has no attribute run even when i used Python 3.6.6
         #result = subprocess.run(SCRIPT_PATH    , stdout=subprocess.PIPE)
         result_b = subprocess.check_output(cmd,stderr=subprocess.STDOUT,shell=True)
         try:
-            logging.info("Convert bytes to string")
+            print("Convert bytes to string")
             result = result_b.decode("utf-8")
         except Exception as e:
-            logging.error("ERROR on converting bytes to string" + str(e))
+            print("ERROR on converting bytes to string" + str(e))
             exit(1)
 
     except Exception as e:
-        logging.error("ERROR while running blackduck scan with subprocess" + str(e))
+        print("ERROR while running blackduck scan with subprocess" + str(e))
         sys.exit(1)
 
-    logging.info("finish running subprocess for blackduck run")
+    print("finish running subprocess for blackduck run")
     if 'Exit code: 0' in result:
-        logging.info("Blackduck scan ran successfully with exit code 0")
+        print("Blackduck scan ran successfully with exit code 0")
     else:
-        logging.error("ERROR: blackduck scan failed. exit code is not 0 !" + str(result))
+        print("ERROR: blackduck scan failed. exit code is not 0 !" + str(result))
 
 if __name__ == '__main__':
     main()
