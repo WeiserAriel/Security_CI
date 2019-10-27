@@ -9,6 +9,7 @@ import subprocess
 
 # TODO - need to clone repository to /tmp/ci_security/
 #REPOSITORY CONTANTS:
+
 BASE_DIRECTORY = "/tmp/Security_CI/"
 SOURCE_FILE_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep +"../"  + "config"
 SCRIPT_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep +"../" + "run_bd_scan.sh"
@@ -29,7 +30,7 @@ PROJECT_SRC_PATH = "export PROJECT_SRC_PATH=" + BASE_DIRECTORY + "folder_tmp"
 #Examples: --project HPCX --file  /hpc/noarch/HPCX/released/v2.4.1/hpcx-v2.4.1.0-gcc-MLNX_OFED_LINUX-4.5-1.0.1.0-redhat7.6-x86_64.tbz --version HPCX2_4_1-tgz
 
 def main():
-
+    print("Start Script from bd_manager.py")
     #TODO ArgPasre
     parser = argparse.ArgumentParser(description='simple usage: --project NEO \
      --file /qa/qa/security/neo/neo-2.3.0-91.el7.tar.gz')
@@ -37,7 +38,6 @@ def main():
     parser.add_argument('--project',choices=['UFM','MOFED','NEO','MFT','UFMAPL','MLNX_OS','HPCX'] , dest='project', help='select a project from list')
     parser.add_argument('--version', help='product version',dest='version', required=True)
     parser.add_argument('--file', help='file to scan',dest='file', required=True)
-
     parser.add_argument('--debug', dest='debug', help='change to debug mode')
 
     args = parser.parse_args()
@@ -53,7 +53,7 @@ def main():
                         filemode='a')
 
 
-    print("Start Script from bd_manager.py")
+
     edit_source_file(args.project, args.version, args.file)
     #if it's MOFED i need to take sources and untar them for arg.file.
     directory_path = copy_file_to_tmp(args.project, args.file)

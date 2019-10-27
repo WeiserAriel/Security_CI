@@ -6,12 +6,14 @@ import sys
 import subprocess
 import shutil
 
+CURRENT = os.path.dirname(os.path.abspath(__file__)) + os.sep
 BASE_DIRECTORY = "/tmp/"
 BASE_BD_MANAGER_PATH = '/tmp/Security_CI/'
 SRC_DIR = BASE_BD_MANAGER_PATH + 'bd_ci/src/'
 BD_MANGER_PATH = BASE_BD_MANAGER_PATH +'bd_ci/src/bd_manager.py'
 
 def main():
+    print("Start the script start_bd.py")
     #TODO ArgPasre
     parser = argparse.ArgumentParser(description='simple usage: --project NEO \
      --file /qa/qa/security/neo/neo-2.3.0-91.el7.tar.gz')
@@ -20,7 +22,7 @@ def main():
     parser.add_argument('--version', help='product version',dest='version', required=True)
     parser.add_argument('--file', help='file to scan',dest='file', required=True)
 
-    parser.add_argument('--debug', dest='debug', help='change to debug mode')
+
 
     args = parser.parse_args()
 
@@ -28,14 +30,14 @@ def main():
         level = logging.DEBUG
     else:
         level = logging.INFO
-    logging.basicConfig(filename=BASE_BD_MANAGER_PATH + 'security_ci.log',
+    logging.basicConfig(filename=CURRENT + 'bd_ci.log',
                         level=level,
                         format='%(asctime)s %(levelname)-8s %(message)s',
                         datefmt='%m-%d %H:%M',
                         filemode='w')
     print("start script for blackduck with these params:" + "Project = " + args.project + '\n'\
           + "Version = " + args.version + "\n" + "File = " + args.file + "\n" )
-    print("Start the script")
+
     clone_repository()
     run_bd_manager(args.project ,args.version, args.file)
 
@@ -45,9 +47,6 @@ def run_bd_manager(project, version, file):
     try:
         cmd = BD_MANGER_PATH + ' ---project ' + project + " --version " + version + ' --file ' + file
         print("running CMD is : " + cmd)
-        # subprocess has no attribute run even when i used Python 3.6.6
-        #result = subprocess.run(SCRIPT_PATH    , stdout=subprocess.PIPE)
-        #TODO - ERRORR
         result_b = subprocess.check_output(cmd,stderr=subprocess.STDOUT,shell=True)
         try:
             print("Convert bytes to string")
