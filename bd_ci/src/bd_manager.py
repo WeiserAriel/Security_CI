@@ -133,7 +133,7 @@ def edit_source_file(name, version, src_path):
     project_name = PROJECT_NAME.replace("project_name_tmp",'\"' +str(name)) + "_AUTOMATION" + '\"'
     project_version = PROJECT_VERSION.replace("project_version_tmp",'\"' + str(version)) + '\"'
     project_src_path_arr = str(PROJECT_SRC_PATH.replace("folder_tmp",  name) + '\"').split('=')
-    project_src_path = project_src_path_arr[0] + '=\"' + project_src_path_arr[1] +'_automation'
+    project_src_path = project_src_path_arr[0] + project_src_path_arr[1] +'_automation' +'\"'
 
     print("Project name is:" + project_name)
     print("Project version is: "+ project_version)

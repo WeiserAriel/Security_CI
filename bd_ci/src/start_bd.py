@@ -21,6 +21,7 @@ def main():
     parser.add_argument('--project',choices=['UFM','MOFED','NEO','MFT','UFMAPL','MLNX_OS','HPCX'] , dest='project', help='select a project from list')
     parser.add_argument('--version', help='product version',dest='version', required=True)
     parser.add_argument('--file', help='file to scan',dest='file', required=True)
+    parser.add_argument('--debug', help='verbosity',dest='debug')
 
 
 
@@ -35,7 +36,7 @@ def main():
                         format='%(asctime)s %(levelname)-8s %(message)s',
                         datefmt='%m-%d %H:%M',
                         filemode='w')
-    print("start script for blackduck with these params:" + "Project = " + args.project + '\n'\
+    print("start script for blackduck with these params:\n" + "Project = " + args.project + '\n'\
           + "Version = " + args.version + "\n" + "File = " + args.file + "\n" )
 
     clone_repository()
@@ -45,7 +46,7 @@ def run_bd_manager(project, version, file):
 
     print("start running bd manager")
     try:
-        cmd = BD_MANGER_PATH + ' ---project ' + project + " --version " + version + ' --file ' + file
+        cmd = "python " + BD_MANGER_PATH + ' --project ' + project + " --version " + version + ' --file ' + file
         print("running CMD is : " + cmd)
         result_b = subprocess.check_output(cmd,stderr=subprocess.STDOUT,shell=True)
         try:
