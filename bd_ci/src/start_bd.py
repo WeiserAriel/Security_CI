@@ -4,9 +4,12 @@ import logging
 import os
 import sys
 import subprocess
+import shutil
 
 BASE_DIRECTORY = "/tmp/"
-BD_MANGER_PATH = '/tmp/Security_CI/bd_ci/src/bd_manager.py'
+BASE_BD_MANAGER_PATH = '/tmp/Security_CI/'
+SRC_DIR = BASE_BD_MANAGER_PATH + 'bd_ci/src/'
+BD_MANGER_PATH = BASE_BD_MANAGER_PATH +'bd_ci/src/bd_manager.py'
 
 def main():
     #TODO ArgPasre
@@ -25,7 +28,7 @@ def main():
         level = logging.DEBUG
     else:
         level = logging.INFO
-    logging.basicConfig(filename=BASE_DIRECTORY + 'security_ci.log',
+    logging.basicConfig(filename=BASE_BD_MANAGER_PATH + 'security_ci.log',
                         level=level,
                         format='%(asctime)s %(levelname)-8s %(message)s',
                         datefmt='%m-%d %H:%M',
@@ -44,16 +47,17 @@ def run_bd_manager(project, version, file):
         print("running CMD is : " + cmd)
         # subprocess has no attribute run even when i used Python 3.6.6
         #result = subprocess.run(SCRIPT_PATH    , stdout=subprocess.PIPE)
+        #TODO - ERRORR
         result_b = subprocess.check_output(cmd,stderr=subprocess.STDOUT,shell=True)
         try:
-            logging.info("Convert bytes to string")
+            print("Convert bytes to string")
             result = result_b.decode("utf-8")
         except Exception as e:
-            logging.error("ERROR on converting bytes to string" + str(e))
+            print("ERROR on converting bytes to string" + str(e))
             exit(1)
 
     except Exception as e:
-        logging.error("ERROR while running blackduck scan with subprocess" + str(e))
+        print("ERROR while running blackduck scan with subprocess" + str(e))
         sys.exit(1)
     print("run bd is Done!")
 
@@ -65,11 +69,30 @@ def clone_repository():
     print("Cloning the repository to :" + clone)
     try:
         #os.system("ssh -p 3tango root@smg-ib-svr040") #i will run it on the local machine.
+        if os.path.exists(BASE_BD_MANAGER_PATH):
+            print("Repository was exist on server before the script started. removing it. ")
+            shutil.rmtree(BASE_BD_MANAGER_PATH)
         os.chdir(path) # Specifying the path where the cloned project needs to be copied
         os.system(clone) # Cloning
     except Exception as e:
         print("ERROR: Exception received while trying to clone the repository to : " + BASE_DIRECTORY + " error message:" + str(e))
         exit(1)
+
+    set_correct_permission()
+
+def set_correct_permission():
+
+    print("Change permission for all source files to +x")
+    for file in os.listdir(SRC_DIR):
+        if file.endswith(".py"):
+            try:
+                tmp_file = os.path.join(SRC_DIR, file)
+                print("chaning permission for "  + tmp_file)
+                os.chmod(tmp_file,777)
+            except Exception as e:
+                print("ERROR : Execption received on set correct permissions to file " + str(e))
+                exit(1)
+    print("Change permission for all files are done. ")
 
 if __name__ == '__main__':
     main()

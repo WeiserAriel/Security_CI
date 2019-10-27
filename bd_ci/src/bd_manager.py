@@ -50,7 +50,7 @@ def main():
                         level=level,
                         format='%(asctime)s %(levelname)-8s %(message)s',
                         datefmt='%m-%d %H:%M',
-                        filemode='w')
+                        filemode='a')
 
 
     logging.info("Start Script...")
