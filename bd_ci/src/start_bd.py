@@ -87,6 +87,8 @@ def run_bd_manager(project, version, file):
     except Exception as e:
         print("ERROR while running blackduck scan with subprocess" + str(e))
         sys.exit(1)
+    print("Printing results from bd_manager.py\n" )
+    print(result_b +"'\n\n\n")
     print("run bd is Done!")
 
 def clone_repository():
