@@ -45,17 +45,6 @@ def main():
 
     args = parser.parse_args()
 
-    if args.debug:
-        level = logging.DEBUG
-    else:
-        level = logging.INFO
-    logging.basicConfig(filename=BASE_DIRECTORY + 'security_ci.log',
-                        level=level,
-                        format='%(asctime)s %(levelname)-8s %(message)s',
-                        datefmt='%m-%d %H:%M',
-                        filemode='a')
-
-
 
     edit_source_file(args.project, args.version, args.file)
     #if it's MOFED i need to take sources and untar them for arg.file.
@@ -65,6 +54,7 @@ def main():
     clear_all_repository()
     send_email(args.project ,args.version, args.file)
     print("BD ENDS SUCCUSSFULLY!!!\n\n ")
+    exit(0)
 
 def send_email(project ,version, file):
 
@@ -97,7 +87,7 @@ def copy_file_to_tmp(project_name,file_path ):
     try:
         mode = 777
         if not os.path.isdir(dst_directory_path):
-            os.mkdir(dst_directory_path)
+            os.makedirs(dst_directory_path)
         os.chmod(dst_directory_path, mode)
         #os.chmod(file_path,mode)
     except Exception as e:
@@ -109,7 +99,7 @@ def copy_file_to_tmp(project_name,file_path ):
         #for MOFED project we need to copy a directory and not a file:
         #example : file path = /mswg/release/ofed/OFED-internal-4.6-3.7.7.2/SRPMS/
         if project_name == 'MOFED'or project_name == 'MFT':
-            print("Copy source files to :" + str(dst_directory_path))
+            print("Copy source files to :" + str(dst_directory_path) + "( This might take few minutes )")
             copytree_helper(file_path, dst_directory_path)
         else:
             # adding the name of the file to the directory path

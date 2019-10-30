@@ -40,8 +40,52 @@ def main():
     print("start script for blackduck with these params:\n" + "Project = " + args.project + '\n'\
           + "Version = " + args.version + "\n" + "File = " + args.file + "\n" )
 
+    check_folder_size_for_scan(args.file)
     clone_repository()
     run_bd_manager(args.project ,args.version, args.file)
+
+def check_folder_size_for_scan(file):
+    print("Check that source code is Smaller than 3.5GB")
+    try:
+        size_in_bits = getFolderSize(file)
+        h_size = human(size_in_bits)
+    except Exception as e:
+        print("ERROR : got exeception in check folder size for scan" + str(e))
+        exit(1)
+    if 'GB' in h_size:
+        try:
+            num_of_gb = str(h_size).split('GB')[0]
+            if float(num_of_gb) > float(3.5):
+                print("Your Directory : " + str(file) + "is  greater than 3.5GB !")
+                exit(1)
+        except Exception as e:
+            print("ERROR: Exception was thrown in check folder size")
+
+    print("Size of the directory is : " + str(h_size))
+
+def getFolderSize(p):
+    from functools import partial
+    prepend = partial(os.path.join, p)
+    return sum([(os.path.getsize(f) if os.path.isfile(f) else getFolderSize(f)) for f in map(prepend, os.listdir(p))])
+
+
+def human(size):
+
+    B = "B"
+    KB = "KB"
+    MB = "MB"
+    GB = "GB"
+    TB = "TB"
+    UNITS = [B, KB, MB, GB, TB]
+    HUMANFMT = "%f %s"
+    HUMANRADIX = 1024.
+
+    for u in UNITS[:-1]:
+        if size < HUMANRADIX : return HUMANFMT % (size, u)
+        size /= HUMANRADIX
+
+    return HUMANFMT % (size,  UNITS[-1])
+
 
 
 
