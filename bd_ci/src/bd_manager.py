@@ -87,7 +87,7 @@ def copy_file_to_tmp(project_name,file_path ):
     try:
         mode = 777
         if not os.path.isdir(dst_directory_path):
-            os.makedirs(dst_directory_path)
+            os.mkdir(dst_directory_path)
         os.chmod(dst_directory_path, mode)
         #os.chmod(file_path,mode)
     except Exception as e:
