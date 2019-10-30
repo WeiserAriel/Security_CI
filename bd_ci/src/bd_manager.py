@@ -181,7 +181,7 @@ def edit_source_file(name, version, src_path):
 
 
 def run_blackduck_scan():
-    print("start running blackduck scan")
+    print("start running blackduck scan ( NOTE : it can take between 30-80 minutes")
     try:
         cmd = SCRIPT_PATH
         # subprocess has no attribute run even when i used Python 3.6.6
