@@ -5,6 +5,9 @@ import os
 import tarfile
 import shutil
 import subprocess
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 
 # TODO - need to clone repository to /tmp/ci_security/
@@ -60,6 +63,31 @@ def main():
     load_source_file()
     run_blackduck_scan()
     clear_all_repository()
+    send_email(args.project ,args.version, args.file)
+    print("BD ENDS SUCCUSSFULLY!!!\n\n ")
+
+def send_email(project ,version, file):
+
+    print("Sending Email to 'arielwe@mellanox.com to notify process complete")
+    try:
+        fromaddr = 'blackduck-scanner@mellanox.com'
+        toaddr = 'arielwe@mellanox.com'
+        msg = MIMEMultipart()
+        msg['From'] = fromaddr
+        msg['To'] = toaddr
+        msg['Subject'] = "BlackDuck Results - " + str(version)
+        body = "Project = " + str(project) +'\n' + "Version = " + str(version) + '\n' + "File = " + str(file) + '\n'
+        msg.attach(MIMEText(body, 'plain'))
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.ehlo()
+        server.starttls()
+        server.ehlo()
+        server.login("memory.tester1234@gmail.com", "2wsx@WSX")
+        text = msg.as_string()
+        server.sendmail(fromaddr, toaddr, text)
+    except Exception as e:
+        print("ERROR:Execption raised while sending an email")
+        exit(1)
 
 def copy_file_to_tmp(project_name,file_path ):
 
@@ -80,7 +108,7 @@ def copy_file_to_tmp(project_name,file_path ):
     try:
         #for MOFED project we need to copy a directory and not a file:
         #example : file path = /mswg/release/ofed/OFED-internal-4.6-3.7.7.2/SRPMS/
-        if project_name == 'MOFED':
+        if project_name == 'MOFED'or project_name == 'MFT':
             print("Copy source files to :" + str(dst_directory_path))
             copytree_helper(file_path, dst_directory_path)
         else:
