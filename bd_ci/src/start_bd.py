@@ -51,21 +51,23 @@ def run_bd_manager(project, version, file):
     print("start running bd manager")
     try:
         cmd = "python " + BD_MANGER_PATH + ' --project ' + project + " --version " + version + ' --file ' + file + ' &'
-        print("running CMD in in the background : " + cmd)
-        print()
-        result_b = subprocess.check_output(cmd,stderr=subprocess.STDOUT,shell=True)
+        print("running CMD in in the background :\n " + cmd +'\n')
+        os.system(cmd)
+        #result_b = subprocess.check_output(cmd,stderr=subprocess.STDOUT,shell=True)
+        '''
         try:
             print("Convert bytes to string")
             result = result_b.decode("utf-8")
         except Exception as e:
             print("ERROR on converting bytes to string" + str(e))
             exit(1)
+            '''
 
     except Exception as e:
         print("ERROR while running blackduck scan with subprocess" + str(e))
         sys.exit(1)
     print("Printing results from bd_manager.py\n" )
-    print(result_b +"'\n\n\n")
+    #print(result_b +"'\n\n\n")
     print("run bd is Done! results will be available in 1h !")
 
 def clone_repository():
