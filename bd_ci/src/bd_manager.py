@@ -93,12 +93,11 @@ def copy_file_to_tmp(project_name,file_path ):
     except Exception as e:
         print("ERROR: Can't change permission for directory" + str(e))
         sys.exit(1)
-
-    print("Copy file ")
+    print("Add write/Read permission for directory ended successfully")
     try:
         #for MOFED project we need to copy a directory and not a file:
         #example : file path = /mswg/release/ofed/OFED-internal-4.6-3.7.7.2/SRPMS/
-        if project_name == 'MOFED'or project_name == 'MFT':
+        if project_name == 'MOFED'or project_name == 'MFT' or project_name == 'HPCX':
             print("Copy source files to :" + str(dst_directory_path) + "( This might take few minutes )")
             copytree_helper(file_path, dst_directory_path)
         else:
