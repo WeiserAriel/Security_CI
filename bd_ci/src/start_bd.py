@@ -13,6 +13,7 @@ BASE_BD_MANAGER_PATH = '/tmp/Security_CI/'
 SRC_DIR = BASE_BD_MANAGER_PATH + 'bd_ci/src/'
 BD_MANGER_PATH = BASE_BD_MANAGER_PATH +'bd_ci/src/bd_manager.py'
 
+
 def main():
     print("Start the script start_bd.py")
     #TODO ArgPasre
@@ -47,21 +48,32 @@ def main():
 def check_folder_size_for_scan(file):
     print("Check that source code is Smaller than 3.5GB")
     try:
-        size_in_bits = getFolderSize(file)
-        h_size = human(size_in_bits)
+        if os.path.isdir(file):
+            size_in_bits = getFolderSize(file)
+            h_size = human(size_in_bits)
+
+            if 'GB' in h_size:
+                try:
+                    num_of_gb = str(h_size).split('GB')[0]
+                    if float(num_of_gb) > float(3.5):
+                        print("Your Directory : " + str(file) + "is  greater than 3.5GB !")
+                        exit(1)
+                except Exception as e:
+                    print("ERROR: Exception was thrown in check folder size")
+
+            print("Size of the directory is : " + str(h_size))
+        else:
+            print("path given is a regular file..checking the size of the file")
+            size_in_bytes = os.path.getsize(file)
+            if float(size_in_bytes) > float(1000000*3.5):
+                print("File size is greater than 3.5GB")
+                exit(1)
+            print("Size of the given file is OK ! ")
     except Exception as e:
         print("ERROR : got exeception in check folder size for scan" + str(e))
         exit(1)
-    if 'GB' in h_size:
-        try:
-            num_of_gb = str(h_size).split('GB')[0]
-            if float(num_of_gb) > float(3.5):
-                print("Your Directory : " + str(file) + "is  greater than 3.5GB !")
-                exit(1)
-        except Exception as e:
-            print("ERROR: Exception was thrown in check folder size")
 
-    print("Size of the directory is : " + str(h_size))
+
 
 def getFolderSize(p):
     from functools import partial
