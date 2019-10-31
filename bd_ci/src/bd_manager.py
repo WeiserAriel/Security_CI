@@ -38,7 +38,7 @@ def main():
     parser = argparse.ArgumentParser(description='simple usage: --project NEO \
      --file /qa/qa/security/neo/neo-2.3.0-91.el7.tar.gz')
     #TODO - change all choices
-    parser.add_argument('--project',choices=['UFM','MOFED','NEO','MFT','UFMAPL','MLNX_OS','HPCX','OPENSM'] , dest='project', help='select a project from list')
+    parser.add_argument('--project',choices=['UFM','MOFED','NEO','MFT','UFMAPL','MLNX_OS','HPCX','OPENSM','IBUTILS2','SHARP'] , dest='project', help='select a project from list')
     parser.add_argument('--version', help='product version',dest='version', required=True)
     parser.add_argument('--file', help='file to scan',dest='file', required=True)
     parser.add_argument('--debug', dest='debug', help='change to debug mode')
@@ -97,7 +97,7 @@ def copy_file_to_tmp(project_name,file_path ):
     try:
         #for MOFED project we need to copy a directory and not a file:
         #example : file path = /mswg/release/ofed/OFED-internal-4.6-3.7.7.2/SRPMS/
-        project_arr = ['MOFED','MFT','HPCX','SHARP','OPENSM','IBUTILS']
+        project_arr = ['MOFED','MFT','HPCX','SHARP','OPENSM','IBUTILS2']
         if project_name in project_arr:
             print("Copy source files to :" + str(dst_directory_path) + "( This might take few minutes )")
             copytree_helper(file_path, dst_directory_path)
