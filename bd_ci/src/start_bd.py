@@ -19,7 +19,7 @@ def main():
     parser = argparse.ArgumentParser(description='simple usage: --project NEO \
      --file /qa/qa/security/neo/neo-2.3.0-91.el7.tar.gz')
     #TODO - change all choices
-    parser.add_argument('--project',choices=['UFM','MOFED','NEO','MFT','UFMAPL','MLNX_OS','HPCX'] , dest='project', help='select a project from list')
+    parser.add_argument('--project',choices=['UFM','MOFED','NEO','MFT','UFMAPL','MLNX_OS','HPCX','OPENSM'] , dest='project', help='select a project from list')
     parser.add_argument('--version', help='product version',dest='version', required=True)
     parser.add_argument('--file', help='file to scan',dest='file', required=True)
     parser.add_argument('--debug', help='verbosity',dest='debug')
