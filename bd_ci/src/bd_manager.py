@@ -164,7 +164,7 @@ def edit_source_file(name, version, src_path):
             file1.write((project_version + '\n'))
             file1.write(project_src_path + '\n')
     except Exception as e:
-        print("ERROR while editing source file")
+        print("ERROR while editing source file" + str(e))
         sys.exit(1)
 
     print("source file was written successfully")
