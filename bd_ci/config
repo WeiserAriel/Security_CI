@@ -1,39 +1,8 @@
+#!/bin/bash
 export SPRING_APPLICATION_JSON='{"blackduck.url":"https://blackduck.mellanox.com/","blackduck.api.token":"NjYyNTZjOTAtMGE4Ni00ZTcwLWE4MWMtNDkwYTEwMmZmNDViOmJkNTQ1ZDRjLTExYzAtNGI2Yy05Y2FiLTA0ZDNiZjdlNDMwYg=="}'
 
 export PROJECT_NAME="MOFED_AUTOMATION"
 export PROJECT_VERSION="4_6_3_6_2_2-srpm-ofed-internal"
 export PROJECT_SRC_PATH="/mswg/release/ofed/OFED-internal-4.6-3.7.7.2/SRPMS/"
 
-export PROJECT_NAME="MOFED_AUTOMATION"
-export PROJECT_VERSION="MOFED4.6.3"
-export PROJECT_SRC_PATH="/tmp/MOFED"_automation
-export PROJECT_NAME="MOFED_AUTOMATION"
-export PROJECT_VERSION="MOFED4.6.3"
-export PROJECT_SRC_PATH="/tmp/MOFED"_automation
-export PROJECT_NAME="MOFED_AUTOMATION"
-export PROJECT_VERSION="MOFED4.6.3"
-export PROJECT_SRC_PATH="/tmp/MOFED"_automation
-export PROJECT_NAME="MOFED_AUTOMATION"
-export PROJECT_VERSION="MOFED4.6.3"
-export PROJECT_SRC_PATH="/tmp/MOFED"_automation
-export PROJECT_NAME="MOFED_AUTOMATION"
-export PROJECT_VERSION="MOFED4.6.3"
-export PROJECT_SRC_PATH="/tmp/MOFED"_automation
-export PROJECT_NAME="MOFED_AUTOMATION"
-export PROJECT_VERSION="MOFED4.6.3"
-export PROJECT_SRC_PATH="/tmp/MOFED"_automation
-export PROJECT_NAME="MOFED_AUTOMATION"
-export PROJECT_VERSION="MOFED4.6.3"
-export PROJECT_SRC_PATH="/tmp/MOFED"_automation
-export PROJECT_NAME="NEO_AUTOMATION"
-export PROJECT_VERSION="NEO_2_5_0"
-export PROJECT_SRC_PATH="/tmp/NEO"_automation
-export PROJECT_NAME="MFT_AUTOMATION"
-export PROJECT_VERSION="MFT_4_13_0_104_RPM"
-export PROJECT_SRC_PATH="/tmp/MFT"_automation
-export PROJECT_NAME="UFMAPL_AUTOMATION"
-export PROJECT_VERSION="UFMAPL_4_1_5_ISO"
-export PROJECT_SRC_PATH="/tmp/UFMAPL"_automation
-export PROJECT_NAME="HPCX_AUTOMATION"
-export PROJECT_VERSION="HPCX2_4_1-tgz"
-export PROJECT_SRC_PATH="/tmp/HPCX"_automation
+
