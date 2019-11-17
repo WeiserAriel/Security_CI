@@ -126,7 +126,7 @@ def copytree_helper(src, dst, symlinks=False, ignore=None):
 
 def load_source_file():
     print ("loading source file from : " + SOURCE_FILE_PATH)
-    cmd = 'source ' + SOURCE_FILE_PATH
+    cmd = '/bin/dash ' + 'source ' + SOURCE_FILE_PATH
     print('cmd is ' + cmd )
     try:
         subprocess.call(cmd, shell=True)
