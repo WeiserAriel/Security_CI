@@ -14,8 +14,8 @@ from email.mime.multipart import MIMEMultipart
 #REPOSITORY CONTANTS:
 
 BASE_DIRECTORY = "/tmp/Security_CI/"
-SOURCE_FILE_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep +"../"  + "config"
-SCRIPT_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep +"../" + "run_bd_scan.sh"
+SOURCE_FILE_PATH = '/bin/bash ' + os.path.dirname(os.path.abspath(__file__)) + os.sep +"../"  + "config"
+SCRIPT_PATH = '/bin/bash ' + os.path.dirname(os.path.abspath(__file__)) + os.sep +"../" + "run_bd_scan.sh"
 
 #SOURCE FILE CONSTANTS:
 PROJECT_NAME = "export PROJECT_NAME=project_name_tmp"
@@ -126,7 +126,7 @@ def copytree_helper(src, dst, symlinks=False, ignore=None):
 
 def load_source_file():
     print ("loading source file from : " + SOURCE_FILE_PATH)
-    cmd = '/bin/bash ' + 'source ' + SOURCE_FILE_PATH
+    cmd = 'source ' + SOURCE_FILE_PATH
     try:
         subprocess.call(cmd, shell=True)
     except Exception as e:
