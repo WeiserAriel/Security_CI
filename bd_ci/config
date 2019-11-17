@@ -1,4 +1,4 @@
-#!/bin/bash
+
 export SPRING_APPLICATION_JSON='{"blackduck.url":"https://blackduck.mellanox.com/","blackduck.api.token":"NjYyNTZjOTAtMGE4Ni00ZTcwLWE4MWMtNDkwYTEwMmZmNDViOmJkNTQ1ZDRjLTExYzAtNGI2Yy05Y2FiLTA0ZDNiZjdlNDMwYg=="}'
 
 export PROJECT_NAME="MOFED_AUTOMATION"
