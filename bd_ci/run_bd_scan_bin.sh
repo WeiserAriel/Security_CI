@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Scipt for executing a BlackDuck Scan
 #
