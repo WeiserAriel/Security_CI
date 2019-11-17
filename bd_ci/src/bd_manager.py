@@ -79,7 +79,7 @@ def send_email(project ,version, file):
         print("ERROR:Execption raised while sending an email")
         exit(1)
 
-def copy_file_to_tmp(project_name,file_path ):
+def copy_file_to_tmp(project_name,file_path ):  
 
     print("start copy project file to tmp directory")
     dst_directory_path = BASE_DIRECTORY + project_name +'_automation/'
@@ -126,7 +126,7 @@ def copytree_helper(src, dst, symlinks=False, ignore=None):
 
 def load_source_file():
     print ("loading source file from : " + SOURCE_FILE_PATH)
-    cmd = 'source ' + SOURCE_FILE_PATH
+    cmd = '/bin/bash ' + 'source ' + SOURCE_FILE_PATH
     try:
         subprocess.call(cmd, shell=True)
     except Exception as e:
@@ -171,7 +171,7 @@ def edit_source_file(name, version, src_path):
 
 
 def run_blackduck_scan():
-    print("start running blackduck scan ( NOTE : it can take between 30-80 minutes")
+    print("start running blackduck scan ( NOTE : it can take between 30-80 minutes )")
     try:
         cmd = SCRIPT_PATH
         # subprocess has no attribute run even when i used Python 3.6.6
