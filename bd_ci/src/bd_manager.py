@@ -82,7 +82,7 @@ def send_email(project ,version, file):
 def copy_file_to_tmp(project_name,file_path ):  
 
     print("start copy project file to tmp directory")
-    dst_directory_path = BASE_DIRECTORY + project_name +'_automation/'
+    dst_directory_path = BASE_DIRECTORY + project_name +'/'
     print("Add write/Read permission for directory")
     try:
         mode = 777
@@ -154,10 +154,10 @@ def clear_all_repository():
 def edit_source_file(name, version, src_path):
     logging.info("start editing source file")
 
-    project_name = PROJECT_NAME.replace("project_name_tmp",'\"' +str(name)) + "_AUTOMATION" + '\"'
+    project_name = PROJECT_NAME.replace("project_name_tmp",'\"' +str(name))  + '\"'
     project_version = PROJECT_VERSION.replace("project_version_tmp",'\"' + str(version)) + '\"'
     project_src_path_arr = str(PROJECT_SRC_PATH.replace("folder_tmp",  name)).split('=')
-    project_src_path = project_src_path_arr[0] +'=\"'+ project_src_path_arr[1] +'_automation' +'\"'
+    project_src_path = project_src_path_arr[0] +'=\"'+ project_src_path_arr[1]  +'\"'
 
     print("Project name is:" + project_name)
     print("Project version is: "+ project_version)
