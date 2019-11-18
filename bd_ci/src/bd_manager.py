@@ -49,7 +49,7 @@ def main():
     edit_source_file(args.project, args.version, args.file)
     #if it's MOFED i need to take sources and untar them for arg.file.
     directory_path = copy_file_to_tmp(args.project, args.file)
-    load_source_file()
+    load_source_file(args.project)
     run_blackduck_scan()
     clear_all_repository()
     send_email(args.project ,args.version, args.file)
@@ -124,9 +124,14 @@ def copytree_helper(src, dst, symlinks=False, ignore=None):
         else:
             shutil.copy2(s, d)
 
-def load_source_file():
+def load_source_file(project):
     print ("loading source file from : " + SOURCE_FILE_PATH)
-    cmd = '. ' + SOURCE_FILE_PATH
+    #w/o for ubuntu server in hpcx project
+    print("project given is : " + project )
+    if project == 'HPCX':
+        cmd = '. ' + SOURCE_FILE_PATH
+    else:
+        cmd = 'source ' + SOURCE_FILE_PATH
     print('cmd is ' + cmd )
     try:
         subprocess.call(cmd, shell=True)
