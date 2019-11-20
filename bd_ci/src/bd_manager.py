@@ -43,7 +43,6 @@ def main():
     parser.add_argument('--version', help='product version',dest='version', required=True)
     parser.add_argument('--file', help='file to scan',dest='file', required=True)
     parser.add_argument('--binary', help='binary scan of one file',dest='binary')
-    parser.add_argument('--debug', dest='debug', help='change to debug mode')
 
     args = parser.parse_args()
 
