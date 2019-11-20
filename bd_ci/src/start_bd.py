@@ -24,21 +24,12 @@ def main():
     parser.add_argument('--version', help='product version',dest='version', required=True)
     parser.add_argument('--file', help='file to scan',dest='file', required=True)
     parser.add_argument('--binary', help='binary scan of one file',dest='binary')
-    parser.add_argument('--debug', help='verbosity',dest='debug')
+
 
 
 
     args = parser.parse_args()
 
-    if args.debug:
-        level = logging.DEBUG
-    else:
-        level = logging.INFO
-    logging.basicConfig(filename=CURRENT + 'bd_ci.log',
-                        level=level,
-                        format='%(asctime)s %(levelname)-8s %(message)s',
-                        datefmt='%m-%d %H:%M',
-                        filemode='w')
     print("start script for blackduck with these params:\n" + "Project = " + args.project + '\n'\
           + "Version = " + args.version + "\n" + "File = " + args.file + "\n" )
 
