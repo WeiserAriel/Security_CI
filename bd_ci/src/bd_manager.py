@@ -180,7 +180,7 @@ def edit_source_file(name, version, src_path):
 
 
 def run_blackduck_scan(binary):
-    print("start running blackduck scan ( NOTE : it can take between 30-80 minutes )")
+    
     try:
         print("Check if binary scan was selected ")
         if binary:
@@ -190,6 +190,7 @@ def run_blackduck_scan(binary):
             print("source scan was select. \n cmd is : ")
             cmd = SCRIPT_PATH
         print (cmd)
+        print("start running blackduck scan ( NOTE : it can take between 30-80 minutes )")
         # subprocess has no attribute run even when i used Python 3.6.6
         #result = subprocess.run(SCRIPT_PATH    , stdout=subprocess.PIPE)
         result_b = subprocess.check_output(cmd,stderr=subprocess.STDOUT,shell=True)
