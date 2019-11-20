@@ -49,7 +49,7 @@ def main():
 
     edit_source_file(args.project, args.version, args.file)
     #if it's MOFED i need to take sources and untar them for arg.file.
-    directory_path = copy_file_to_tmp(args.project, args.file)
+    directory_path = copy_file_to_tmp(args.project, args.file, args.binary)
     load_source_file(args.project)
     run_blackduck_scan(args.binary)
     clear_all_repository()
@@ -80,7 +80,7 @@ def send_email(project ,version, file):
         print("ERROR:Execption raised while sending an email")
         exit(1)
 
-def copy_file_to_tmp(project_name,file_path ):  
+def copy_file_to_tmp(project_name,file_path,binary_scan ):  
 
     print("start copy project file to tmp directory")
     dst_directory_path = BASE_DIRECTORY + project_name +'/'
@@ -98,11 +98,13 @@ def copy_file_to_tmp(project_name,file_path ):
     try:
         #for MOFED project we need to copy a directory and not a file:
         #example : file path = /mswg/release/ofed/OFED-internal-4.6-3.7.7.2/SRPMS/
-        project_arr = ['MOFED','MFT','HPCX','SHARP','OPENSM','IBUTILS2']
-        if project_name in project_arr:
+        #project_arr = ['MOFED','MFT','HPCX','SHARP','OPENSM','IBUTILS2']
+        #if project_name in project_arr:
+        if not binary_scan:
             print("Copy source files to :" + str(dst_directory_path) + "( This might take few minutes )")
             copytree_helper(file_path, dst_directory_path)
         else:
+            print('binary scan is selecte. copy file to tmp directory')
             # adding the name of the file to the directory path
             file_name = str(file_path).split('/').pop()
             dst_full_directory_path = dst_directory_path + file_name
