@@ -16,7 +16,7 @@ from email.mime.multipart import MIMEMultipart
 BASE_DIRECTORY = "/tmp/Security_CI/"
 SOURCE_FILE_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep +"../"  + "config"
 SCRIPT_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep +"../" + "run_bd_scan.sh"
-SCRIPT_PATH_BIN = os.path.dirname(os.path.abspath(__file__)) + os.sep +"../" + "run_bd_scan.sh --binary"
+SCRIPT_PATH_BIN = os.path.dirname(os.path.abspath(__file__)) + os.sep +"../" + "run_bd_scan.sh binary"
 
 #SOURCE FILE CONSTANTS:
 PROJECT_NAME = "export PROJECT_NAME=project_name_tmp"
