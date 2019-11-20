@@ -44,7 +44,7 @@ def main():
 
     check_folder_size_for_scan(args.file)
     clone_repository()
-    run_bd_manager(args.project ,args.version, args.file, args.debug)
+    run_bd_manager(args.project ,args.version, args.file, args.debug, args.binary)
 
 def check_folder_size_for_scan(file):
     print("Check that source code is Smaller than 3.5GB")
