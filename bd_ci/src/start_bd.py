@@ -66,7 +66,7 @@ def check_folder_size_for_scan(file):
         else:
             print("path given is a regular file..checking the size of the file")
             size_in_bytes = os.path.getsize(file)
-            if float(size_in_bytes) > float(1000000*3.5):
+            if float(size_in_bytes) > float(1000000000*3.5):
                 print("File size is greater than 3.5GB")
                 exit(1)
             print("Size of the given file is OK ! ")
