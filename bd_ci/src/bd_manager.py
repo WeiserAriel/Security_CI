@@ -187,8 +187,8 @@ def run_blackduck_scan(binary):
             print("binary scan was selected. \n cmd is :")
             cmd = SCRIPT_PATH_BIN
         else:
-            print("source scan was select. \n cmd is : ")
             cmd = SCRIPT_PATH
+            print("source scan was select. \n cmd is : "+ cmd)
         print (cmd)
         print("start running blackduck scan ( NOTE : it can take between 30-80 minutes )")
         # subprocess has no attribute run even when i used Python 3.6.6
