@@ -16,7 +16,7 @@ from email.mime.multipart import MIMEMultipart
 BASE_DIRECTORY = "/tmp/Security_CI/"
 SOURCE_FILE_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep +"../"  + "config"
 SCRIPT_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep +"../" + "run_bd_scan.sh"
-SCRIPT_PATH_BIN = os.path.dirname(os.path.abspath(__file__)) + os.sep +"../" + "run_bd_scan_bin.sh"
+SCRIPT_PATH_BIN = os.path.dirname(os.path.abspath(__file__)) + os.sep +"../" + "run_bd_scan.sh --binary"
 
 #SOURCE FILE CONSTANTS:
 PROJECT_NAME = "export PROJECT_NAME=project_name_tmp"
@@ -184,12 +184,11 @@ def run_blackduck_scan(binary):
     try:
         print("Check if binary scan was selected ")
         if binary:
-            print("binary scan was selected. \n cmd is :")
             cmd = SCRIPT_PATH_BIN
+            print("binary scan was selected. \n cmd is :")
         else:
             cmd = SCRIPT_PATH
             print("source scan was select. \n cmd is : "+ cmd)
-        print (cmd)
         print("start running blackduck scan ( NOTE : it can take between 30-80 minutes )")
         # subprocess has no attribute run even when i used Python 3.6.6
         #result = subprocess.run(SCRIPT_PATH    , stdout=subprocess.PIPE)
