@@ -16,6 +16,7 @@ from email.mime.multipart import MIMEMultipart
 BASE_DIRECTORY = "/tmp/Security_CI/"
 SOURCE_FILE_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep +"../"  + "config"
 SCRIPT_PATH = os.path.dirname(os.path.abspath(__file__)) + os.sep +"../" + "run_bd_scan.sh"
+SCRIPT_PATH_BIN = os.path.dirname(os.path.abspath(__file__)) + os.sep +"../" + "run_bd_scan.sh"
 
 #SOURCE FILE CONSTANTS:
 PROJECT_NAME = "export PROJECT_NAME=project_name_tmp"
@@ -41,6 +42,7 @@ def main():
     parser.add_argument('--project',choices=['UFM','MOFED','NEO','MFT','UFMAPL','MLNX_OS','HPCX','OPENSM','IBUTILS2','SHARP'] , dest='project', help='select a project from list')
     parser.add_argument('--version', help='product version',dest='version', required=True)
     parser.add_argument('--file', help='file to scan',dest='file', required=True)
+    parser.add_argument('--binary', help='binary scan of one file',dest='binary')
     parser.add_argument('--debug', dest='debug', help='change to debug mode')
 
     args = parser.parse_args()
@@ -50,7 +52,7 @@ def main():
     #if it's MOFED i need to take sources and untar them for arg.file.
     directory_path = copy_file_to_tmp(args.project, args.file)
     load_source_file(args.project)
-    run_blackduck_scan()
+    run_blackduck_scan(args.binary)
     clear_all_repository()
     send_email(args.project ,args.version, args.file)
     print("BD ENDS SUCCUSSFULLY!!!\n\n ")
