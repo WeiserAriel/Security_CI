@@ -23,6 +23,7 @@ def main():
     parser.add_argument('--project',choices=['UFM','MOFED','NEO','MFT','UFMAPL','MLNX_OS','HPCX','OPENSM','SHARP','IBUTILS2'] , dest='project', help='select a project from list')
     parser.add_argument('--version', help='product version',dest='version', required=True)
     parser.add_argument('--file', help='file to scan',dest='file', required=True)
+    parser.add_argument('--binary', help='binary scan of one file',dest='binary')
     parser.add_argument('--debug', help='verbosity',dest='debug')
 
 
@@ -43,7 +44,7 @@ def main():
 
     check_folder_size_for_scan(args.file)
     clone_repository()
-    run_bd_manager(args.project ,args.version, args.file)
+    run_bd_manager(args.project ,args.version, args.file, args.debug)
 
 def check_folder_size_for_scan(file):
     print("Check that source code is Smaller than 3.5GB")
