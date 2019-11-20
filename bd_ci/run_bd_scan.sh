@@ -1,12 +1,12 @@
-#!/bin/sh                                                                                                                 
-#                                                                                                                         
-# Scipt for executing a BlackDuck Scan                                                                                    
-#                                                                                                                         
-# USAGE:                                                                                                                  
-# Execute on Linux machine                                                                                                
-# Requires Java 8                                                                                                         
-# Execute in a directory where you have WRITE permissions                                                                 
-#                                                                                                                         
+#!/bin/sh                                          
+#                                                  
+# Scipt for executing a BlackDuck Scan             
+#                                                  
+# USAGE:                                           
+# Execute on Linux machine                         
+# Requires Java 8                                  
+# Execute in a directory where you have WRITE permissions
+#                                                        
 
 ### Constants - START
 BINARY_SCAN_TYPE="binary"
