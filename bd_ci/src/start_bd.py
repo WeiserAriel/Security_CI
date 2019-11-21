@@ -98,7 +98,10 @@ def run_bd_manager(project, version, file, binary):
 
     print("start running bd manager")
     try:
-        cmd = "python " + BD_MANGER_PATH + ' --project ' + project + " --version " + version + ' --file ' + file + ' --binary ' + binary + ' &'
+        if binary:
+            cmd = "python " + BD_MANGER_PATH + ' --project ' + project + " --version " + version + ' --file ' + file + ' --binary ' + binary + ' &'
+        else:
+            cmd = "python " + BD_MANGER_PATH + ' --project ' + project + " --version " + version + ' --file ' + file + ' &'
         print("running CMD in in the background :\n " + cmd +'\n')
         os.system(cmd)
         #result_b = subprocess.check_output(cmd,stderr=subprocess.STDOUT,shell=True)
