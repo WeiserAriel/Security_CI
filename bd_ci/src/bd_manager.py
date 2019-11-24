@@ -47,7 +47,7 @@ def main():
     args = parser.parse_args()
 
 
-    edit_source_file(args.project, args.version, args.file)
+    edit_source_file(args.project, args.version, args.file, args.binary)
     #if it's MOFED i need to take sources and untar them for arg.file.
     directory_path = copy_file_to_tmp(args.project, args.file, args.binary)
     load_source_file(args.project)
@@ -157,13 +157,19 @@ def clear_all_repository():
         sys.exit(1)
     print("Repository was removed")
 
-def edit_source_file(name, version, src_path):
+def edit_source_file(name, version, src_path,binary):
     logging.info("start editing source file")
 
     project_name = PROJECT_NAME.replace("project_name_tmp",'\"' +str(name))  + '\"'
     project_version = PROJECT_VERSION.replace("project_version_tmp",'\"' + str(version)) + '\"'
-    project_src_path_arr = str(PROJECT_SRC_PATH.replace("folder_tmp",  name)).split('=')
-    project_src_path = project_src_path_arr[0] +'=\"'+ project_src_path_arr[1]  +'\"'
+    if not binary:
+        project_src_path_arr = str(PROJECT_SRC_PATH.replace("folder_tmp",  name)).split('=')
+        project_src_path = project_src_path_arr[0] +'=\"'+ project_src_path_arr[1]  +'\"'
+    else:
+        file_name = src_path.split('/')[-1]
+        project_src_path_arr = str(PROJECT_SRC_PATH.replace("folder_tmp",  name)).split('=')
+        project_src_path = project_src_path_arr[0] +'=\"'+ project_src_path_arr[1] + os.sep + file_name +'\"'
+        
 
     print("Project name is:" + project_name)
     print("Project version is: "+ project_version)
