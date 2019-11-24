@@ -68,8 +68,8 @@ def configure_env_vars(project, version, file, binary):
         os.environ["PROJECT_VERSION"] =version
         if not os.path.isdir(file):
             print('file is directory. editing env variable ')
-            file = ""
             arr = file.split('/')[:-1]
+            file=""
             for part in arr:
                 if not part:
                     continue
