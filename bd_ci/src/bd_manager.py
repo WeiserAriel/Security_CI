@@ -105,6 +105,7 @@ def copy_file_to_tmp(project_name,file_path,binary_scan ):
             # adding the name of the file to the directory path
             file_name = str(file_path).split('/').pop()
             dst_full_directory_path = dst_directory_path + file_name
+            print("file_path = " + file_path + "\n" + "dst_full : " + dst_full_directory_path )
             shutil.copyfile(file_path, dst_full_directory_path)
             print("Copy file for binary scan succeeded")
         else:  
