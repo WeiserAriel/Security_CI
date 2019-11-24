@@ -223,8 +223,7 @@ def run_blackduck_scan(binary):
 
     except Exception as e:
         print("ERROR while running blackduck scan with subprocess" + str(e))
-        if result_b:
-            print(result_b)
+        print(stderr)
         sys.exit(1)
 
     print("finish running subprocess for blackduck run")
