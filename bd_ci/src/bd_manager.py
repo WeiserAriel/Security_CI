@@ -105,12 +105,12 @@ def copy_file_to_tmp(project_name,file_path,binary_scan ):
             # adding the name of the file to the directory path
             file_name = str(file_path).split('/').pop()
             dst_full_directory_path = dst_directory_path + file_name
-            print("file_path = " + file_path + "\n" + "dst_full : " + dst_full_directory_path )
             shutil.copyfile(file_path, dst_full_directory_path)
             print("Copy file for binary scan succeeded")
         else:  
             print(" source scan is chosen, copy all directoy to destination")
             print("Copy source files to :" + str(dst_directory_path) + "( This might take few minutes )")
+            print("file_path = " + file_path + "\n" + "dst_full : " + dst_directory_path )
             copytree_helper(file_path, dst_directory_path)
             print("Copy directory for source scan succussfully")
     except Exception as e:
