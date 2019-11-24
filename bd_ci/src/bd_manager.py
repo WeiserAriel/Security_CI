@@ -74,9 +74,9 @@ def configure_env_vars(project, version, file, binary):
                 if not part:
                     continue
                 else:
-                    file + = '/'
-                    file + = part
-            file += '/'
+                    file  = file +'/'
+                    file  = file + part
+            file = file  + '/'
         os.environ["PROJECT_SRC_PATH"] =file
 
 
