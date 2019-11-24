@@ -101,7 +101,7 @@ def copy_file_to_tmp(project_name,file_path,binary_scan ):
         #project_arr = ['MOFED','MFT','HPCX','SHARP','OPENSM','IBUTILS2']
         #if project_name in project_arr:
         if binary_scan:
-             print('binary scan is selected. copy file to tmp directory')
+            print('binary scan is selected. copy file to tmp directory')
             # adding the name of the file to the directory path
             file_name = str(file_path).split('/').pop()
             dst_full_directory_path = dst_directory_path + file_name
