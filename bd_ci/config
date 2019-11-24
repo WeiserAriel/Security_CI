@@ -1,8 +1,5 @@
 
 export SPRING_APPLICATION_JSON='{"blackduck.url":"https://blackduck.mellanox.com/","blackduck.api.token":"NjYyNTZjOTAtMGE4Ni00ZTcwLWE4MWMtNDkwYTEwMmZmNDViOmJkNTQ1ZDRjLTExYzAtNGI2Yy05Y2FiLTA0ZDNiZjdlNDMwYg=="}'
 
-export PROJECT_NAME="MOFED_AUTOMATION"
-export PROJECT_VERSION="4_6_3_6_2_2-srpm-ofed-internal"
-export PROJECT_SRC_PATH="/mswg/release/ofed/OFED-internal-4.6-3.7.7.2/SRPMS/"
 
 
