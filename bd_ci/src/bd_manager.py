@@ -80,6 +80,12 @@ def send_email(project ,version, file):
         print("ERROR:Execption raised while sending an email")
         exit(1)
 
+
+def copy_single_file(file_path,dst_directory_path):
+    file_name = str(file_path).split('/').pop()
+    dst_full_directory_path = dst_directory_path + file_name
+    shutil.copyfile(file_path, dst_full_directory_path)
+    
 def copy_file_to_tmp(project_name,file_path,binary_scan ):  
 
     print("start copy project file to tmp directory")
@@ -103,16 +109,22 @@ def copy_file_to_tmp(project_name,file_path,binary_scan ):
         if binary_scan:
             print('binary scan is selected. copy file to tmp directory')
             # adding the name of the file to the directory path
-            file_name = str(file_path).split('/').pop()
-            dst_full_directory_path = dst_directory_path + file_name
-            shutil.copyfile(file_path, dst_full_directory_path)
+            copy_single_file(file_path,dst_directory_path)
             print("Copy file for binary scan succeeded")
         else:  
             print(" source scan is chosen, copy all directoy to destination")
             print("Copy source files to :" + str(dst_directory_path) + "( This might take few minutes )")
             print("file_path = " + file_path + "\n" + "dst_full : " + dst_directory_path )
-            copytree_helper(file_path, dst_directory_path)
-            print("Copy directory for source scan succussfully")
+            print("check if file given is dirctory or regular file")
+            if os.path.isdir(file_path):
+                print ("given file is directory")
+                copytree_helper(file_path, dst_directory_path)
+                print("Copy directory for source scan succussfully")
+            else:
+                print("given file is a regular file ")
+                copy_single_file(file_path,dst_directory_path)
+                print("Copy single file for source scan succussfully")
+           
     except Exception as e:
 
         print("ERROR : copy file failed" + str(e))
