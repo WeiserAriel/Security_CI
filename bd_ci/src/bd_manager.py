@@ -64,14 +64,14 @@ def configure_env_vars(project, version, file, binary):
     try:
         print('setting env variables')
         os.environ["SPRING_APPLICATION_JSON"] = r"""{"blackduck.url":"https://blackduck.mellanox.com/","blackduck.api.token":"NjYyNTZjOTAtMGE4Ni00ZTcwLWE4MWMtNDkwYTEwMmZmNDViOmJkNTQ1ZDRjLTExYzAtNGI2Yy05Y2FiLTA0ZDNiZjdlNDMwYg=="}"""
-        os.environ["PROJECT_NAME"] =project
+        os.environ["PROJECT_NAME"] = project
         os.environ["PROJECT_VERSION"] =version
         os.environ["PROJECT_SRC_PATH"] =file
 
 
-        print("Project name is:" + project_name)
-        print("Project version is: "+ project_version)
-        print("Project src path is: " + project_src_path)
+        print("Project name is:" + project)
+        print("Project version is: "+ version)
+        print("Project src path is: " + file)
     except Exception as e:
         print('ERROR : Exception received in ENV Variables configuration' + str(e))
         sys.exit(1)
