@@ -47,17 +47,37 @@ def main():
 
     args = parser.parse_args()
 
-
-    edit_source_file(args.project, args.version, args.file, args.binary)
+    #TODO - checking env variables with os module instead of 'source' command 
+    configure_env_vars(args.project, args.version, args.file, args.binary)
+    #edit_source_file(args.project, args.version, args.file, args.binary)
     #if it's MOFED i need to take sources and untar them for arg.file.
     directory_path = copy_file_to_tmp(args.project, args.file, args.binary)
-    load_source_file(args.project)
+    #load_source_file(args.project)
     verify_env_var()
     run_blackduck_scan(args.binary)
     clear_all_repository()
     send_email(args.project ,args.version, args.file)
     print("BD ENDS SUCCUSSFULLY!!!\n\n ")
     exit(0)
+
+def configure_env_vars(args.project, args.version, args.file, args.binary):
+    try:
+        print('setting env variables')
+        os.environ["SPRING_APPLICATION_JSON"] = r"""{"blackduck.url":"https://blackduck.mellanox.com/","blackduck.api.token":"NjYyNTZjOTAtMGE4Ni00ZTcwLWE4MWMtNDkwYTEwMmZmNDViOmJkNTQ1ZDRjLTExYzAtNGI2Yy05Y2FiLTA0ZDNiZjdlNDMwYg=="}"""
+        os.environ["PROJECT_NAME"] =args.project
+        os.environ["PROJECT_VERSION"] =args.version
+        os.environ["PROJECT_SRC_PATH"] =args.file
+
+
+        print("Project name is:" + project_name)
+        print("Project version is: "+ project_version)
+        print("Project src path is: " + project_src_path)
+    except Exception as e:
+        print('ERROR : Exception received in ENV Variables configuration' + str(e))
+        sys.exit(1)
+    
+
+    print("source file was written successfully")
 
 def verify_env_var():
     vars = ['SPRING_APPLICATION_JSON','PROJECT_NAME','PROJECT_VERSION','PROJECT_SRC_PATH']
