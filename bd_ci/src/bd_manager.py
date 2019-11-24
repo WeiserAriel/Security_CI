@@ -188,7 +188,7 @@ def run_blackduck_scan(binary):
         print("Check if binary scan was selected ")
         if binary:
             cmd = SCRIPT_PATH_BIN
-            print("binary scan was selected. \n cmd is :")
+            print("binary scan was selected. \n cmd is : " + cmd)
         else:
             cmd = SCRIPT_PATH
             print("source scan was select. \n cmd is : "+ cmd)
