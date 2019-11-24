@@ -100,16 +100,18 @@ def copy_file_to_tmp(project_name,file_path,binary_scan ):
         #example : file path = /mswg/release/ofed/OFED-internal-4.6-3.7.7.2/SRPMS/
         #project_arr = ['MOFED','MFT','HPCX','SHARP','OPENSM','IBUTILS2']
         #if project_name in project_arr:
-        if not binary_scan:
-            print("Copy source files to :" + str(dst_directory_path) + "( This might take few minutes )")
-            copytree_helper(file_path, dst_directory_path)
-        else:
-            print('binary scan is selecte. copy file to tmp directory')
+        if binary_scan:
+             print('binary scan is selected. copy file to tmp directory')
             # adding the name of the file to the directory path
             file_name = str(file_path).split('/').pop()
             dst_full_directory_path = dst_directory_path + file_name
             shutil.copyfile(file_path, dst_full_directory_path)
-        print("Copy file succeeded")
+            print("Copy file for binary scan succeeded")
+        else:  
+            print(" source scan is chosen, copy all directoy to destination")
+            print("Copy source files to :" + str(dst_directory_path) + "( This might take few minutes )")
+            copytree_helper(file_path, dst_directory_path)
+            print("Copy directory for source scan succussfully")
     except Exception as e:
 
         print("ERROR : copy file failed" + str(e))
