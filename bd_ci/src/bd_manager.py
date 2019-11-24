@@ -66,7 +66,7 @@ def configure_env_vars(project, version, file, binary):
         os.environ["SPRING_APPLICATION_JSON"] = r"""{"blackduck.url":"https://blackduck.mellanox.com/","blackduck.api.token":"NjYyNTZjOTAtMGE4Ni00ZTcwLWE4MWMtNDkwYTEwMmZmNDViOmJkNTQ1ZDRjLTExYzAtNGI2Yy05Y2FiLTA0ZDNiZjdlNDMwYg=="}"""
         os.environ["PROJECT_NAME"] = project
         os.environ["PROJECT_VERSION"] =version
-        if os.path.isdir(file):
+        if not os.path.isdir(file):
             print('file is directory. editing env variable ')
             file = ""
             arr = file.split('/')[:-1]
