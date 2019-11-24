@@ -63,7 +63,7 @@ def verify_env_var():
     
     for variable in vars:
         
-        tmp = '$' + var
+        tmp = '$' + variable
         cmd = 'echo ' + tmp
         try:
             
