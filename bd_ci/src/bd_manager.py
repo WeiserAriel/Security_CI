@@ -51,12 +51,31 @@ def main():
     #if it's MOFED i need to take sources and untar them for arg.file.
     directory_path = copy_file_to_tmp(args.project, args.file, args.binary)
     load_source_file(args.project)
+    verify_env_var()
     run_blackduck_scan(args.binary)
     clear_all_repository()
     send_email(args.project ,args.version, args.file)
     print("BD ENDS SUCCUSSFULLY!!!\n\n ")
     exit(0)
 
+def verify_env_var():
+    vars = ['SPRING_APPLICATION_JSON','PROJECT_NAME','PROJECT_VERSION','PROJECT_SRC_PATH']
+    for variable in vars:
+        tmp = '$' + var
+        cmd = 'echo ' + tmp
+        try:
+            result_b = subprocess.check_output(cmd,stderr=subprocess.STDOUT,shell=True)
+            result = result_b.decode("utf-8")
+            if not result:
+                print('ENV variable ' + tmp + ' is empty')
+                sys.exit(1)
+            else:
+                print('checking Env variable : ' + tmp + ' = ' +result )
+         except Execption as e:
+            print('ERROR: got exception during verify env variables ' + str(e) )
+            sys.exit(1)
+     print('ENV variables check is finished successfully')
+    
 def send_email(project ,version, file):
 
     print("Sending Email to 'arielwe@mellanox.com to notify process complete")
