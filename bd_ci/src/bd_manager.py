@@ -60,10 +60,13 @@ def main():
 
 def verify_env_var():
     vars = ['SPRING_APPLICATION_JSON','PROJECT_NAME','PROJECT_VERSION','PROJECT_SRC_PATH']
+    
     for variable in vars:
+        
         tmp = '$' + var
         cmd = 'echo ' + tmp
         try:
+            
             result_b = subprocess.check_output(cmd,stderr=subprocess.STDOUT,shell=True)
             result = result_b.decode("utf-8")
             if not result:
@@ -71,7 +74,8 @@ def verify_env_var():
                 sys.exit(1)
             else:
                 print('checking Env variable : ' + tmp + ' = ' +result )
-         except Execption as e:
+        except Execption as e:
+            
             print('ERROR: got exception during verify env variables ' + str(e) )
             sys.exit(1)
      print('ENV variables check is finished successfully')
