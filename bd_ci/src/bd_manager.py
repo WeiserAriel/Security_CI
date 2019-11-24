@@ -78,7 +78,7 @@ def verify_env_var():
             
             print('ERROR: got exception during verify env variables ' + str(e) )
             sys.exit(1)
-      print('ENV variables check is finished successfully')
+    print('ENV variables check is finished successfully')
     
 def send_email(project ,version, file):
 
