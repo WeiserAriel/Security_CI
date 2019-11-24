@@ -6,6 +6,7 @@ import tarfile
 import shutil
 import subprocess
 import smtplib
+import time
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
@@ -175,7 +176,11 @@ def load_source_file(project):
         cmd = 'source ' + SOURCE_FILE_PATH
     print('cmd is ' + cmd )
     try:
-        subprocess.call(cmd, shell=True)
+        for attempt in [1,2]:
+            print('trying to load the source file #' + attempt)
+            subprocess.call(cmd, shell=True)
+            print('sleep 5 seconds')
+            time.sleep(5)
     except Exception as e:
         print("ERROR while running loading source file with subprocess" + str(e))
         sys.exit(1)
