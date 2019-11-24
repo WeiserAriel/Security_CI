@@ -60,13 +60,13 @@ def main():
     print("BD ENDS SUCCUSSFULLY!!!\n\n ")
     exit(0)
 
-def configure_env_vars(args.project, args.version, args.file, args.binary):
+def configure_env_vars(project, version, file, binary):
     try:
         print('setting env variables')
         os.environ["SPRING_APPLICATION_JSON"] = r"""{"blackduck.url":"https://blackduck.mellanox.com/","blackduck.api.token":"NjYyNTZjOTAtMGE4Ni00ZTcwLWE4MWMtNDkwYTEwMmZmNDViOmJkNTQ1ZDRjLTExYzAtNGI2Yy05Y2FiLTA0ZDNiZjdlNDMwYg=="}"""
-        os.environ["PROJECT_NAME"] =args.project
-        os.environ["PROJECT_VERSION"] =args.version
-        os.environ["PROJECT_SRC_PATH"] =args.file
+        os.environ["PROJECT_NAME"] =project
+        os.environ["PROJECT_VERSION"] =version
+        os.environ["PROJECT_SRC_PATH"] =file
 
 
         print("Project name is:" + project_name)
