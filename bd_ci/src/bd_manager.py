@@ -177,7 +177,7 @@ def load_source_file(project):
     print('cmd is ' + cmd )
     try:
         for attempt in [1,2]:
-            print('trying to load the source file #' + attempt)
+            print('trying to load the source file #' + str(attempt))
             subprocess.call(cmd, shell=True)
             print('sleep 5 seconds')
             time.sleep(5)
