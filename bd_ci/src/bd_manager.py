@@ -84,7 +84,8 @@ def source_scan_on_repository(project, version):
             configure_env_vars(project, version, path, None)
             verify_env_var()
             run_blackduck_scan(None)
-            clear_all_repository(BASE_REPO_PATH)
+            os.chdir(BASE_REPO_PATH)
+            clear_all_repository(path)
     else:
         print('Repository is not configured in script.. Skipping')
         return None
@@ -274,11 +275,11 @@ def load_source_file(project):
 
 def clear_all_repository(path):
     directory_path = path
-    print("Removing entire repository repository from ")
+    print("Removing entire repository repository from path : " + str(path))
     try:
         shutil.rmtree(directory_path)
     except Exception as e:
-        print("ERROR Couldn't remove repository")
+        print("ERROR Couldn't remove repository " + str(e))
         sys.exit(1)
     print("Repository was removed")
 
@@ -346,4 +347,5 @@ def run_blackduck_scan(binary):
 
 if __name__ == '__main__':
     main()
+
 
