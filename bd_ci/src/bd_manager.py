@@ -359,10 +359,10 @@ def run_blackduck_scan(binary):
     if 'Exit code: 0' in result:
         print("Blackduck scan ran successfully with exit code 0")
     else:
-        print("ERROR: blackduck scan failed. exit code is not 0 !" + str(result))
+        print("ERROR: blackduck scan failed. exit code is not 0 !\n\nFrom BD log:\n" + str(result))
+        sys.exit(1)
 
 
 if __name__ == '__main__':
     main()
-
 
