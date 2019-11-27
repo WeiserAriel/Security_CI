@@ -64,7 +64,7 @@ def clone_repo(project, url):
     print("cloning repository in url: " + url)
     cmd = 'git clone ' + url + ' .'
     path = BASE_REPO_PATH + project + '/'
-    print('cloning ' + project + 'repository into ' + str(path) + ' folder')
+    print('cloning ' + project + ' repository into ' + str(path) + ' folder')
     try:
         # os.system("ssh -p 3tango root@smg-ib-svr040") #i will run it on the local machine.
         if os.path.exists(path):
@@ -75,9 +75,9 @@ def clone_repo(project, url):
         if project == 'HPCX':
             #so i have multiply repos.
             for rep in ['ucx','mxm','fca','mpi_tests','ompi','sharp','hcoll']:
-                cmd = cmd + rep
-                print('running : ' + cmd)
-                os.system(cmd)
+                c = cmd[:-1] + rep + ' .'
+                print('running : ' + c)
+                os.system(c)
         else:
             os.system(cmd)  # Cloning
     except Exception as e:
