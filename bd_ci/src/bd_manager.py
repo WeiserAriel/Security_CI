@@ -75,7 +75,7 @@ def clone_repo(project, url):
         if project == 'HPCX':
             #so i have multiply repos.
             for rep in ['ucx','mxm','fca','mpi_tests','ompi','sharp','hcoll']:
-                c = cmd[:-1] + rep + ' .'
+                c = cmd[:-2] + rep + ' .'
                 print('running : ' + c)
                 os.system(c)
         else:
