@@ -74,23 +74,29 @@ def clone_repo(project, url):
         os.chdir(path)  # Specifying the path where the cloned project needs to be copied
         if project == 'HPCX':
             #so i have multiply repos.
-            for rep in ['ucx','mxm','fca','mpi_tests','ompi','sharp','hcoll']:
-                c = cmd[:-2] + rep + ' .'
-                print('running : ' + c)
-                os.system(c)
+            try:
+                for rep in ['ucx','mxm','fca','mpi_tests','ompi','sharp','hcoll']:
+                    os.mkdir(rep)
+                    c = cmd[:-2] + rep + ' ' + rep + '/'
+                    print('running : ' + c)
+                    os.system(c)
+            except Exception as e:
+                print('ERROR: Exception received when cloning ' + rep)
+                sys.exit(1)
         else:
             os.system(cmd)  # Cloning
     except Exception as e:
         print("ERROR: Exception received while trying to clone the repository to : " + BASE_DIRECTORY + " error message:" + str(e))
         exit(1)
     print('Cloning ' + project + ' repository has ended successfully')
+    return path
 
 def source_scan_on_repository(project, version):
 
     print("searching if source scan can be done on repository")
     for rep_name,url in repos.items():
         if rep_name == project:
-            clone_repo(project,url)
+            path=clone_repo(project,url)
             configure_env_vars(project, version, path, None)
             verify_env_var()
             run_blackduck_scan(None)
