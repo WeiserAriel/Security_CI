@@ -86,6 +86,7 @@ def source_scan_on_repository(project, version):
             run_blackduck_scan(None)
             os.chdir(BASE_REPO_PATH)
             clear_all_repository(path)
+            break
     else:
         print('Repository is not configured in script.. Skipping')
         return None
