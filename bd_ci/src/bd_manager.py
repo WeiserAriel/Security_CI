@@ -23,7 +23,7 @@ PROJECT_NAME = "export PROJECT_NAME=project_name_tmp"
 PROJECT_VERSION = "export PROJECT_VERSION=project_version_tmp"
 PROJECT_SRC_PATH = "export PROJECT_SRC_PATH=" + BASE_DIRECTORY + "folder_tmp"
 
-repos = {'UFM' : 'ssh://ibrahimbar@l-gerrit.mtl.labs.mlnx:29418/ufm/gvvm'}
+repos = {'UFM' : 'ssh://ibrahimbar@l-gerrit.mtl.labs.mlnx:29418/ufm/gvvm','HPCX':'root@hpc-kernel-03:/hpc/data/git_mirror/hpcx/'}
 
 
 # Examples: --project MOFED --file /mswg/release/ofed/OFED-internal-4.6-3.7.7.2/SRPMS/ --version MOFED4.6.3
@@ -59,28 +59,38 @@ def main():
     print("BD ENDS SUCCUSSFULLY!!!\n\n ")
     exit(0)
 
+def clone_repo(project, url):
+    print("reposity is configued for project : " + str(project))
+    print("cloning repository in url: " + url)
+    cmd = 'git clone ' + url + ' .'
+    path = BASE_REPO_PATH + project + '/'
+    print('cloning ' + project + 'repository into ' + str(path) + ' folder')
+    try:
+        # os.system("ssh -p 3tango root@smg-ib-svr040") #i will run it on the local machine.
+        if os.path.exists(path):
+            print("Repository was exist on server before the script started. removing it. ")
+            shutil.rmtree(path)
+        os.mkdir(path)
+        os.chdir(path)  # Specifying the path where the cloned project needs to be copied
+        if project == 'HPCX':
+            #so i have multiply repos.
+            for rep in ['ucx','mxm','fca','mpi_tests','ompi','sharp','hcoll']:
+                cmd = cmd + rep
+                print('running : ' + cmd)
+                os.system(cmd)
+        else:
+            os.system(cmd)  # Cloning
+    except Exception as e:
+        print("ERROR: Exception received while trying to clone the repository to : " + BASE_DIRECTORY + " error message:" + str(e))
+        exit(1)
+    print('Cloning ' + project + ' repository has ended successfully')
+
 def source_scan_on_repository(project, version):
 
     print("searching if source scan can be done on repository")
     for rep_name,url in repos.items():
         if rep_name == project:
-            print("reposity is configued for project : " + str(project))
-            print("cloning repository in url: " + url)
-            cmd = 'git clone ' + url +' .'
-            path = BASE_REPO_PATH + project + '/'
-            print('cloning ' + project + 'repository into ' + str(path) + ' folder')
-            try:
-                # os.system("ssh -p 3tango root@smg-ib-svr040") #i will run it on the local machine.
-                if os.path.exists(path):
-                    print("Repository was exist on server before the script started. removing it. ")
-                    shutil.rmtree(path)
-                os.mkdir(path)
-                os.chdir(path)  # Specifying the path where the cloned project needs to be copied
-                os.system(cmd)  # Cloning
-            except Exception as e:
-                print("ERROR: Exception received while trying to clone the repository to : " + BASE_DIRECTORY + " error message:" + str(e))
-                exit(1)
-            print('Cloning ' + project + ' repository has ended successfully')
+            clone_repo(project,url)
             configure_env_vars(project, version, path, None)
             verify_env_var()
             run_blackduck_scan(None)
