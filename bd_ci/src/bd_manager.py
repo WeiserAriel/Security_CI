@@ -164,7 +164,7 @@ def configure_env_vars(project, version, file, binary):
         print("Project src path is: " + file)
     except Exception as e:
         print('ERROR : Exception received in ENV Variables configuration' + str(e))
-        exception_details():
+        exception_details()
         sys.exit(1)
 
     print("source file was written successfully")
