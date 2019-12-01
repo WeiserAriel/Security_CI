@@ -135,6 +135,7 @@ def compress_to_binary(project,file,binary):
             return file
     else:
         print("nothing to do...user requsted soource scan")
+        return file
 def configure_env_vars(project, version, file, binary):
     try:
         print('setting env variables')
