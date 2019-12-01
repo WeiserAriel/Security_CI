@@ -59,6 +59,12 @@ def main():
     print("BD ENDS SUCCUSSFULLY!!!\n\n ")
     exit(0)
 
+def exception_details():
+    print('printing exception details')
+    exc_type, exc_obj, exc_tb = sys.exc_info()
+    fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+    print(exc_type, fname, exc_tb.tb_lineno)
+    
 def clone_repo(project, url):
     print("reposity is configued for project : " + str(project))
     print("cloning repository in url: " + url)
@@ -132,6 +138,10 @@ def compress_to_binary(project,file,binary):
 def configure_env_vars(project, version, file, binary):
     try:
         print('setting env variables')
+        #TODO - print for debug
+        print('project = ' + project )
+        print('version = ' + version )
+        print('file = ' + file )
         os.environ[
             "SPRING_APPLICATION_JSON"] = r"""{"blackduck.url":"https://blackduck.mellanox.com/","blackduck.api.token":"NjYyNTZjOTAtMGE4Ni00ZTcwLWE4MWMtNDkwYTEwMmZmNDViOmJkNTQ1ZDRjLTExYzAtNGI2Yy05Y2FiLTA0ZDNiZjdlNDMwYg=="}"""
         os.environ["PROJECT_NAME"] = project
@@ -154,6 +164,7 @@ def configure_env_vars(project, version, file, binary):
         print("Project src path is: " + file)
     except Exception as e:
         print('ERROR : Exception received in ENV Variables configuration' + str(e))
+        exception_details():
         sys.exit(1)
 
     print("source file was written successfully")
