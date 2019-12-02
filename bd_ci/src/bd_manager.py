@@ -156,7 +156,7 @@ def configure_env_vars(project, version, file, binary):
                 print('directory was exist, removing it')
                 shutil.rmtree(dest_folder)
             print('creating new folder :' + dest_folder ) 
-            os.makedirs(dest_folder, exist_ok=True)
+            os.makedirs(dest_folder)
             print(' copy SRC = ' + str(file) + ' to DST = ' + str(dest_folder))
             shutil.copy(file,dest_folder)
             file = dest_folder
