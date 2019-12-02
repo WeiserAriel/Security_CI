@@ -149,6 +149,18 @@ def configure_env_vars(project, version, file, binary):
         os.environ["PROJECT_VERSION"] = version
         if not os.path.isdir(file) and not binary:
             print('file is directory. editing env variable ')
+            #create tmp dir
+            dest_folder = '/tmp/' + str(project) +os.sep + 'files' +os.sep
+            print('check if directory : ' + dest_folder + ' exists')
+            if os.path.exists(dest_folder):
+                print('directory was exist, removing it')
+                shutil.rmtree(dest_folder)
+            print('creating new folder :' + dest_folder ) 
+            os.makedirs(dest_folder, exist_ok=True)
+            print(' copy SRC = ' + str(file) + ' to DST = ' + str(dest_folder))
+            shutil.copy(file,dest_folder)
+            file = dest_folder
+            """
             arr = file.split('/')[:-1]
             file = ""
             for part in arr:
@@ -157,7 +169,7 @@ def configure_env_vars(project, version, file, binary):
                 else:
                     file = file + '/'
                     file = file + part
-            file = file + '/'
+            file = file + '/'"""
         os.environ["PROJECT_SRC_PATH"] = file
 
         print("Project name is:" + project)
