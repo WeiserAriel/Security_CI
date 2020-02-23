@@ -23,7 +23,7 @@ PROJECT_NAME = "export PROJECT_NAME=project_name_tmp"
 PROJECT_VERSION = "export PROJECT_VERSION=project_version_tmp"
 PROJECT_SRC_PATH = "export PROJECT_SRC_PATH=" + BASE_DIRECTORY + "folder_tmp"
 
-repos = {'UFM' : 'ssh://ibrahimbar@l-gerrit.mtl.labs.mlnx:29418/ufm/gvvm','HPCX':'root@hpc-kernel-03:/hpc/data/git_mirror/hpcx/'}
+repos = {'UFM' : 'ssh://ibrahimbar@l-gerrit.mtl.labs.mlnx:29418/ufm/gvvm','HPCX':'root@hpc-kernel-03:/hpc/data/git_mirror/hpcx/','NEO_HOST':'ssh://arielga@l-gerrit.mtl.labs.mlnx:29418/tools/mft'}
 
 
 # Examples: --project MOFED --file /mswg/release/ofed/OFED-internal-4.6-3.7.7.2/SRPMS/ --version MOFED4.6.3
@@ -33,6 +33,7 @@ repos = {'UFM' : 'ssh://ibrahimbar@l-gerrit.mtl.labs.mlnx:29418/ufm/gvvm','HPCX'
 # Examples:  --project MFT --file /mswg/release/mft/mft-4.13.0/mft-4.13.0-104/linux/mft-4.13.0-104/RPMS/mft-4.13.0-104-x86-rpm.tgz --version MFT_4_13_0_104_RPM
 # Examples: --project UFMAPL --file  /mswg/release/ufm/appliance/UFMAPL_4.1.5.2_UFM_6.2.6.2/image-ufm_appliance-x86_64-UFMAPL_4.1.5.2_UFM_6.2.6.2-20190911-130519.img --version UFMAPL_4_1_5_ISO
 # Examples: --project HPCX --file  /hpc/noarch/HPCX/released/v2.4.1/hpcx-v2.4.1.0-gcc-MLNX_OFED_LINUX-4.5-1.0.1.0-redhat7.6-x86_64.tbz --version HPCX2_4_1-tgz
+# Examples: --project NEO_HOST --file  /mswg/release/mft/neohost/latest/neohost-backend/neohost-backend-1.5.0-16.x86_64.rpm.tgz --version NEO_HOST1.5.0
 
 def main():
     print("Start Script from bd_manager.py")
