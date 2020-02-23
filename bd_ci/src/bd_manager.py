@@ -43,7 +43,7 @@ def main():
     # TODO - change all choices
     parser.add_argument('--project',
                         choices=['UFM', 'MOFED', 'NEO', 'MFT', 'UFMAPL', 'MLNX_OS', 'HPCX', 'OPENSM', 'IBUTILS2',
-                                 'SHARP'], dest='project', help='select a project from list')
+                                 'SHARP','NEO_HOST'], dest='project', help='select a project from list')
     parser.add_argument('--version', help='product version', dest='version', required=True)
     parser.add_argument('--file', help='file to scan', dest='file', required=True)
     parser.add_argument('--binary', help='binary scan of one file', dest='binary')
