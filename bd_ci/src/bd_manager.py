@@ -23,8 +23,7 @@ PROJECT_NAME = "export PROJECT_NAME=project_name_tmp"
 PROJECT_VERSION = "export PROJECT_VERSION=project_version_tmp"
 PROJECT_SRC_PATH = "export PROJECT_SRC_PATH=" + BASE_DIRECTORY + "folder_tmp"
 
-repos = {'UFM' : 'ssh://ibrahimbar@l-gerrit.mtl.labs.mlnx:29418/ufm/gvvm','HPCX':'root@hpc-kernel-03:/hpc/data/git_mirror/hpcx/','NEO_HOST':'http://l-gerrit.mtl.labs.mlnx:8080/tools/mft
-'}
+repos = {'UFM' : 'ssh://ibrahimbar@l-gerrit.mtl.labs.mlnx:29418/ufm/gvvm','HPCX':'root@hpc-kernel-03:/hpc/data/git_mirror/hpcx/','NEO_HOST':'http://l-gerrit.mtl.labs.mlnx:8080/tools/mft'}
 
 
 # Examples: --project MOFED --file /mswg/release/ofed/OFED-internal-4.6-3.7.7.2/SRPMS/ --version MOFED4.6.3
