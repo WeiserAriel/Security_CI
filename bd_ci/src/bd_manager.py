@@ -34,6 +34,7 @@ repos = {'UFM' : 'ssh://ibrahimbar@l-gerrit.mtl.labs.mlnx:29418/ufm/gvvm','HPCX'
 # Examples: --project UFMAPL --file  /mswg/release/ufm/appliance/UFMAPL_4.1.5.2_UFM_6.2.6.2/image-ufm_appliance-x86_64-UFMAPL_4.1.5.2_UFM_6.2.6.2-20190911-130519.img --version UFMAPL_4_1_5_ISO
 # Examples: --project HPCX --file  /hpc/noarch/HPCX/released/v2.4.1/hpcx-v2.4.1.0-gcc-MLNX_OFED_LINUX-4.5-1.0.1.0-redhat7.6-x86_64.tbz --version HPCX2_4_1-tgz
 # Examples: --project NEO_HOST --file  /mswg/release/mft/neohost/latest/neohost-backend/neohost-backend-1.5.0-16.x86_64.rpm.tgz --version NEO_HOST1.5.0
+# Examples: --project BlueField --file  /mswg/release/sw_mc_soc/latest-2.5/BlueField-2.5.beta1.11166.tar.xz --version BlueField2.5
 
 def main():
     print("Start Script from bd_manager.py")
@@ -43,7 +44,7 @@ def main():
     # TODO - change all choices
     parser.add_argument('--project',
                         choices=['UFM', 'MOFED', 'NEO', 'MFT', 'UFMAPL', 'MLNX_OS', 'HPCX', 'OPENSM', 'IBUTILS2',
-                                 'SHARP','NEO_HOST'], dest='project', help='select a project from list')
+                                 'SHARP','NEO_HOST','BlueField'], dest='project', help='select a project from list')
     parser.add_argument('--version', help='product version', dest='version', required=True)
     parser.add_argument('--file', help='file to scan', dest='file', required=True)
     parser.add_argument('--binary', help='binary scan of one file', dest='binary')
