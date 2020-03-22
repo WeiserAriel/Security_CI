@@ -67,37 +67,45 @@ def exception_details():
     fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
     print(exc_type, fname, exc_tb.tb_lineno)
     
-def clone_repo(project, url):
+def clone_repo(project, url):                                   
     print("reposity is configued for project : " + str(project))
-    print("cloning repository in url: " + url)
-    cmd = 'git clone ' + url + ' .'
-    path = BASE_REPO_PATH + project + '/'
+    print("cloning repository in url: " + url)                  
+    cmd = 'git clone ' + url + ' .'                             
+    path = BASE_REPO_PATH + project + '/'                       
     print('cloning ' + project + ' repository into ' + str(path) + ' folder')
-    try:
+    try:                                                                     
         # os.system("ssh -p 3tango root@smg-ib-svr040") #i will run it on the local machine.
-        if os.path.exists(path):
+        if os.path.exists(path):                                                            
             print("Repository was exist on server before the script started. removing it. ")
-            shutil.rmtree(path)
-        os.mkdir(path)
-        os.chdir(path)  # Specifying the path where the cloned project needs to be copied
-        if project == 'HPCX':
-            #so i have multiply repos.
-            try:
-                for rep in ['ucx','mxm','fca','mpi_tests','ompi','sharp','hcoll']:
-                    os.mkdir(rep)
-                    c = cmd[:-2] + rep + ' ' + rep + '/'
-                    print('running : ' + c)
-                    os.system(c)
-            except Exception as e:
-                print('ERROR: Exception received when cloning ' + rep)
-                sys.exit(1)
-        else:
-            os.system(cmd)  # Cloning
-    except Exception as e:
+            shutil.rmtree(path)                                                             
+        os.mkdir(path)                                                                      
+        os.chdir(path)  # Specifying the path where the cloned project needs to be copied   
+        if project == 'HPCX':                                                               
+            #so i have multiply repos.                                                      
+            try:                                                                            
+                for rep in ['ucx','mxm','fca','mpi_tests','ompi','sharp','hcoll']:          
+                    os.mkdir(rep)                                                           
+                    c = cmd[:-2] + rep + ' ' + rep + '/'                                    
+                    print('running : ' + c)                                                 
+                    os.system(c)                                                            
+            except Exception as e:                                                          
+                print('ERROR: Exception received when cloning ' + rep)                      
+                sys.exit(1)                                                                 
+        elif project == 'UFMAPL':                                                           
+            print('cloning UFMAPL repository')                                              
+            os.system(cmd)                                                                  
+            print('deleting irrelevent directories from UFMAPL project')                    
+            for directory in('common_mlnx','demo','generic','switchx'):                     
+                dir_ = os.path.abspath(os.getcwd()) + '/tree/customer' + directory          
+                print('removing directory : ' + str(dir_))                                  
+                os.rmtree(dir_)                                                             
+        else:                                                                               
+            os.system(cmd)  # Cloning                                                       
+    except Exception as e:                                                                  
         print("ERROR: Exception received while trying to clone the repository to : " + BASE_DIRECTORY + " error message:" + str(e))
-        exit(1)
-    print('Cloning ' + project + ' repository has ended successfully')
-    return path
+        exit(1)                                                                                                                    
+    print('Cloning ' + project + ' repository has ended successfully')                                                             
+    return path 
 
 def source_scan_on_repository(project, version):
 
