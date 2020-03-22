@@ -35,7 +35,7 @@ repos = {'UFM' : 'ssh://ibrahimbar@l-gerrit.mtl.labs.mlnx:29418/ufm/gvvm','HPCX'
 # Examples: --project HPCX --file  /hpc/noarch/HPCX/released/v2.4.1/hpcx-v2.4.1.0-gcc-MLNX_OFED_LINUX-4.5-1.0.1.0-redhat7.6-x86_64.tbz --version HPCX2_4_1-tgz
 # Examples: --project NEO_HOST --file  /mswg/release/mft/neohost/latest/neohost-backend/neohost-backend-1.5.0-16.x86_64.rpm.tgz --version NEO_HOST1.5.0
 # Examples: --project BlueField --file  /mswg/release/sw_mc_soc/latest-2.5/BlueField-2.5.beta1.11166.tar.xz --version BlueField2.5
-
+# Examples: --project UFMAPL --project UFMAPL --version 4_2_0_Ariel --file /auto/UFM/UFMAPL_4.2.0.4_UFM_6.4.0.10/image-ufm_appliance-x86_64-UFMAPL_4.2.0.4_UFM_6.4.0.10-20200319-211216.img --binary yes
 def main():
     print("Start Script from bd_manager.py")
     # TODO ArgPasre
@@ -96,7 +96,7 @@ def clone_repo(project, url):
             os.system(cmd)                                                                  
             print('deleting irrelevent directories from UFMAPL project')                    
             for directory in('common_mlnx','demo','generic','switchx'):                     
-                dir_ = os.path.abspath(os.getcwd()) + '/tree/customer' + directory          
+                dir_ = os.path.abspath(os.getcwd()) + '/tree/customer/' + directory          
                 print('removing directory : ' + str(dir_))                                  
                 os.rmtree(dir_)  
             print('running git checkout for master')
