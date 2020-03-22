@@ -99,9 +99,9 @@ def clone_repo(project, url):
                 dir_ = os.path.abspath(os.getcwd()) + '/tree/customer' + directory          
                 print('removing directory : ' + str(dir_))                                  
                 os.rmtree(dir_)  
-             print('running git checkout for master')
-             os.system('git checkout ufmapl_4_2_0_ufm_6_3_0')
-             print('git checkout finished successfully')
+            print('running git checkout for master')
+            os.system('git checkout ufmapl_4_2_0_ufm_6_3_0')
+            print('git checkout finished successfully')
         else:                                                                               
             os.system(cmd)  # Cloning                                                       
     except Exception as e:                                                                  
