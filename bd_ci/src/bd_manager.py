@@ -95,13 +95,17 @@ def clone_repo(project, url):
             print('cloning UFMAPL repository')                                              
             os.system(cmd)
             print('running git checkout for master')
-            os.system('git checkout ufmapl_4_2_0_ufm_6_3_0')
+            os.system('git checkout ufmapl_4_2_0_ufm_6_3_0 >/dev/null 2>&1 ')
             print('git checkout finished successfully')
             print('deleting irrelevent directories from UFMAPL project')                    
             for directory in('common_mlnx','demo','generic','switchx'):                     
-                dir_ = os.path.abspath(os.getcwd()) + '/tree/customer/' + directory          
-                print('removing directory : ' + str(dir_))                                  
-                shutil.rmtree(dir_)  
+                dir_ = os.path.abspath(os.getcwd()) + '/tree/customer/' + directory
+                print('check if dir ' + str(dir_) + ' is exist')
+                if os.path.isdir(dir_):
+                    print('removing directory : ' + str(dir_))                                  
+                    shutil.rmtree(dir_)
+                else:
+                    print('dir is not exist' + str(dir_))
             
         else:                                                                               
             os.system(cmd)  # Cloning                                                       
