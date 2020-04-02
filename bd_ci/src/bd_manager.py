@@ -26,16 +26,17 @@ PROJECT_SRC_PATH = "export PROJECT_SRC_PATH=" + BASE_DIRECTORY + "folder_tmp"
 repos = {'UFM' : 'ssh://ibrahimbar@l-gerrit.mtl.labs.mlnx:29418/ufm/gvvm','HPCX':'root@hpc-kernel-03:/hpc/data/git_mirror/hpcx/','NEO_HOST':'http://l-gerrit.mtl.labs.mlnx:8080/tools/mft','UFMAPL':'ssh://ibrahimbar@l-gerrit.mtl.labs.mlnx:29418/ufm_appliance_reduced'}
 
 
-# Examples: --project MOFED --file /mswg/release/ofed/OFED-internal-4.6-3.7.7.2/SRPMS/ --version MOFED4.6.3
-# Examples: --project NEO --file/auto/UFM/NEO/release/NEO-2.5.0/NEO-2.5.0-4/rhel7/neo-2.5.0-4.el7.tar.gz --version NEO_2_5_0
-# Examples: --project MLNX_OS --file onyx-X86_64-3.8.2004.img
-# Examples: --project UFMAPL --file image-ufm_appliance-x86_64-UFMAPL_4.1.5.2_UFM_6.2.6.2-20190911-130519.img
-# Examples:  --project MFT --file /mswg/release/mft/mft-4.13.0/mft-4.13.0-104/linux/mft-4.13.0-104/RPMS/mft-4.13.0-104-x86-rpm.tgz --version MFT_4_13_0_104_RPM
-# Examples: --project UFMAPL --file  /mswg/release/ufm/appliance/UFMAPL_4.1.5.2_UFM_6.2.6.2/image-ufm_appliance-x86_64-UFMAPL_4.1.5.2_UFM_6.2.6.2-20190911-130519.img --version UFMAPL_4_1_5_ISO
-# Examples: --project HPCX --file  /hpc/noarch/HPCX/released/v2.4.1/hpcx-v2.4.1.0-gcc-MLNX_OFED_LINUX-4.5-1.0.1.0-redhat7.6-x86_64.tbz --version HPCX2_4_1-tgz
-# Examples: --project NEO_HOST --file  /mswg/release/mft/neohost/latest/neohost-backend/neohost-backend-1.5.0-16.x86_64.rpm.tgz --version NEO_HOST1.5.0
-# Examples: --project BlueField --file  /mswg/release/sw_mc_soc/latest-2.5/BlueField-2.5.beta1.11166.tar.xz --version BlueField2.5
+# Examples: --project MOFED --file /mswg/release/ofed/OFED-internal-4.6-3.7.7.2/SRPMS/ --version MOFED4.6.3 --binary yes
+# Examples: --project NEO --file/auto/UFM/NEO/release/NEO-2.5.0/NEO-2.5.0-4/rhel7/neo-2.5.0-4.el7.tar.gz --version NEO_2_5_0 --binary yes
+# Examples: --project MLNX_OS --file onyx-X86_64-3.8.2004.img --binary yes
+# Examples: --project UFMAPL --file image-ufm_appliance-x86_64-UFMAPL_4.1.5.2_UFM_6.2.6.2-20190911-130519.img --binary yes
+# Examples:  --project MFT --file /mswg/release/mft/mft-4.13.0/mft-4.13.0-104/linux/mft-4.13.0-104/RPMS/mft-4.13.0-104-x86-rpm.tgz --version MFT_4_13_0_104_RPM --binary yes
+# Examples: --project UFMAPL --file  /mswg/release/ufm/appliance/UFMAPL_4.1.5.2_UFM_6.2.6.2/image-ufm_appliance-x86_64-UFMAPL_4.1.5.2_UFM_6.2.6.2-20190911-130519.img --version UFMAPL_4_1_5_ISO --binary yes
+# Examples: --project HPCX --file  /hpc/noarch/HPCX/released/v2.4.1/hpcx-v2.4.1.0-gcc-MLNX_OFED_LINUX-4.5-1.0.1.0-redhat7.6-x86_64.tbz --version HPCX2_4_1-tgz --binary yes
+# Examples: --project NEO_HOST --file  /mswg/release/mft/neohost/latest/neohost-backend/neohost-backend-1.5.0-16.x86_64.rpm.tgz --version NEO_HOST1.5.0 --binary yes
+# Examples: --project BlueField --file  /auto/mswg/release/sw_mc_soc/latest-2.5/SRPMS/  --version BlueField2.5 --binary yes
 # Examples: --project UFMAPL --project UFMAPL --version 4_2_0_Ariel --file /auto/UFM/UFMAPL_4.2.0.4_UFM_6.4.0.10/image-ufm_appliance-x86_64-UFMAPL_4.2.0.4_UFM_6.4.0.10-20200319-211216.img --binary yes
+
 def main():
     print("Start Script from bd_manager.py")
     # TODO ArgPasre
