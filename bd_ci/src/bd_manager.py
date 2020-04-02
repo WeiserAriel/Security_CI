@@ -34,7 +34,7 @@ repos = {'UFM' : 'ssh://ibrahimbar@l-gerrit.mtl.labs.mlnx:29418/ufm/gvvm','HPCX'
 # Examples: --project UFMAPL --file  /mswg/release/ufm/appliance/UFMAPL_4.1.5.2_UFM_6.2.6.2/image-ufm_appliance-x86_64-UFMAPL_4.1.5.2_UFM_6.2.6.2-20190911-130519.img --version UFMAPL_4_1_5_ISO --binary yes
 # Examples: --project HPCX --file  /hpc/noarch/HPCX/released/v2.4.1/hpcx-v2.4.1.0-gcc-MLNX_OFED_LINUX-4.5-1.0.1.0-redhat7.6-x86_64.tbz --version HPCX2_4_1-tgz --binary yes
 # Examples: --project NEO_HOST --file  /mswg/release/mft/neohost/latest/neohost-backend/neohost-backend-1.5.0-16.x86_64.rpm.tgz --version NEO_HOST1.5.0 --binary yes
-# Examples: --project BlueField --file  /auto/mswg/release/sw_mc_soc/latest-2.5/SRPMS/  --version BlueField2.5 --binary yes
+# Examples: --project BlueField --file  /auto/mswg/release/sw_mc_soc/latest-2.5/BlueField-2.5.1.11209.tar.xz  --version BlueField2.5 --binary yes
 # Examples: --project UFMAPL --project UFMAPL --version 4_2_0_Ariel --file /auto/UFM/UFMAPL_4.2.0.4_UFM_6.4.0.10/image-ufm_appliance-x86_64-UFMAPL_4.2.0.4_UFM_6.4.0.10-20200319-211216.img --binary yes
 
 def main():
